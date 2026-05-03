@@ -36,7 +36,7 @@ public:
 		Iterador(Nodo* n) : current(n) {};
 		~Iterador() {};
 
-		Contact& operator*() {
+		Contact<T>& operator*() {
 			return *(current->contacto);
 		}
 
@@ -82,8 +82,8 @@ public:
 
 	}
 
-	void pushback(Contact c) {
-		Contact* nuevo = new Contact(c);
+	void pushback(Contact<T> c) {
+		Contact<T>* nuevo = new Contact<T>(c);
 		Nodo* neo = new Nodo(*nuevo);
 		if (vacio()) head = neo;
 		else {
@@ -164,7 +164,7 @@ public:
 		return nullptr;
 	}
 
-	Contact* GetContacto(T id) {
+	Contact<T>* GetContacto(T id) {
 		Nodo* aux = FindID(id);
 
 		if (aux == nullptr) return nullptr;

@@ -10,7 +10,7 @@ private:
         Opportunity<T>* oportunidad;
         Nodo* prev;
         Nodo* next;
-        Nodo(Opportunity<T>& data, Nodo* des = nullptr, Nodo* ant = nullptr) : data(data), next(des), prev(ant) {};
+        Nodo(Opportunity<T>& data, Nodo* des = nullptr, Nodo* ant = nullptr) : Opportunity<T>(data), next(des), prev(ant) {};
     };
     Nodo* head;
     int len;
@@ -73,7 +73,7 @@ public:
     }
 
     Nodo* FindID(T id) {
-        if (Vacio()) {
+        if (this->Vacio()) {
             std::cout << "La lista esta vacia!\n";
             return nullptr;
         }
@@ -106,19 +106,19 @@ public:
 
     }
 
-    Opportunity* GetOportunidad(Nodo* a) {
+    Opportunity<T>* GetOportunidad(Nodo* a) {
         return a->oportunidad;
     }
 
     OpportunityList FiltrarEtapa(Etapa e) {
         OpportunityList aaa;
-        if (vacio()) {
+        if (Vacio()) {
             std::cout << "La lista esta vacia!\n";
             return aaa;
         }
         Nodo* aux = head;
         while (aux != nullptr) {
-            if (aux->oportunidad->getAvance() == t) {
+            if (aux->oportunidad->getAvance() == e) {
                 aaa.pushback(*aux->contacto);
             }
             aux = aux->next;
