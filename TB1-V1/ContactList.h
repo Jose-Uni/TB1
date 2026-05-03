@@ -1,5 +1,6 @@
 #pragma once
 #include "Contact.h"
+#include "LeadQueue.h"
 
 template <typename T>
 class Contactlist
@@ -225,6 +226,27 @@ public:
 			aux = aux->next;
 		}
 		return aaa;
+	}
+
+	Contactlist FiltrarEtapas(Etapa t) {
+		Contactlist aaa;
+		if (vacio()) {
+			std::cout << "La lista esta vacia!\n";
+			return aaa;
+		}
+		Nodo* aux = head;
+		while (aux != nullptr) {
+			if (aux->contacto->getAvance() == t) {
+				aaa.pushback(*aux->contacto);
+			}
+			aux = aux->next;
+		}
+		return aaa;
+	}
+
+	LeadQueue<T> GetLeads() {
+		LeadQueue<T> cola;
+		Nodo* aux = head;
 	}
 
 

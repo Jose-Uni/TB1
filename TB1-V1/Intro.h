@@ -6,20 +6,20 @@
 
 
 enum class Tag {
-    CLIENTE,
-    VIP,
-    INACTIVO,
-    FRECUENTE,
-    CORPORATIVO
+	LEAD,           
+	PROSPECTO,      
+	CLIENTE,
+	VIP,
+	INACTIVO,
+	FRECUENTE,
+	CORPORATIVO
 };
 
 enum class Etapa {
-    LEAD,
-    PROSPECTO,
-    PROPUESTA,
-    NEGOCIACION,
-    CERRADO_GANADO,
-    CERRADO_PERDIDO
+	PROPUESTA,      
+	NEGOCIACION,
+	CERRADO_GANADO,
+	CERRADO_PERDIDO
 };
 
 using namespace std;
