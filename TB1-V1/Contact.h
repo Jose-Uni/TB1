@@ -13,7 +13,7 @@ private:
 	T empresa;
 	T cargo;   //seria el puesto en su empresa 
 	bool estado;
-	Tag TipoCliente;  //es lo que es el para nosotros
+	Tag Tipo;  //es lo que es el para nosotros
 	Etapa AvanceVenta;
 
 public:
@@ -32,7 +32,7 @@ public:
 	void setCargo(T a) { cargo = a; }
 	void setTelefono(int a) { telefono = a; }
 	void setEstado(bool a) { estado = a; }
-	void setTipo(Tag a) { TipoCliente = a; }
+	void setTipo(Tag a) { Tipo = a; }
 	void setAvance(Etapa a) { AvanceVenta = a; }
 
 	T getId() { return id; }
@@ -43,7 +43,7 @@ public:
 	T getCargo() { return cargo; }
 	int getTelefono() { return telefono; }
 	bool getEstado() { return estado; }
-	Tag getTipo() { return TipoCliente; }
+	Tag getTipo() { return Tipo; }
 	Etapa getAvance() { return AvanceVenta; }
 
 

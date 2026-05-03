@@ -7,9 +7,9 @@ class Contactlist
 private:
 	struct Nodo
 	{
-		Contact* contacto;
+		Contact<T>* contacto;
 		Nodo* next;
-		Nodo(Contact& cont, Nodo* nex = nullptr) : contacto(&cont), next(nex) {};
+		Nodo(Contact<T>& cont, Nodo* nex = nullptr) : contacto(&cont), next(nex) {};
 	};
 
 	Nodo* head;
@@ -209,7 +209,22 @@ public:
 		}
 
 		return aaa;
+	}
 
+	Contactlist FiltrarTipo(Tag t) {
+		Contactlist aaa;
+		if (vacio()) {
+			std::cout << "La lista esta vacia!\n";
+			return aaa;
+		}
+		Nodo* aux = head;
+		while (aux != nullptr) {
+			if (aux->contacto->getTipo() == t) {
+				aaa.pushback(*aux->contacto);
+			}
+			aux = aux->next;
+		}
+		return aaa;
 	}
 
 

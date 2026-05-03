@@ -7,10 +7,10 @@ class OpportunityList
 private:
     struct Nodo
     {
-        Opportunity* oportunidad;
+        Opportunity<T>* oportunidad;
         Nodo* prev;
         Nodo* next;
-        Nodo(T& data, Nodo* des = nullptr, Nodo* ant = nullptr) : data(data), next(des), prev(ant) {};
+        Nodo(Opportunity<T>& data, Nodo* des = nullptr, Nodo* ant = nullptr) : data(data), next(des), prev(ant) {};
     };
     Nodo* head;
     int len;
@@ -105,6 +105,29 @@ public:
         delete aux;
 
     }
+
+    Opportunity* GetOportunidad(Nodo* a) {
+        return a->oportunidad;
+    }
+
+    OpportunityList FiltrarEtapa(Etapa e) {
+        OpportunityList aaa;
+        if (vacio()) {
+            std::cout << "La lista esta vacia!\n";
+            return aaa;
+        }
+        Nodo* aux = head;
+        while (aux != nullptr) {
+            if (aux->oportunidad->getAvance() == t) {
+                aaa.pushback(*aux->contacto);
+            }
+            aux = aux->next;
+        }
+        return aaa;
+
+    }
+
+
 
 
 };
