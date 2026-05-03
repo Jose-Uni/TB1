@@ -228,25 +228,16 @@ public:
 		return aaa;
 	}
 
-	Contactlist FiltrarEtapas(Etapa t) {
-		Contactlist aaa;
-		if (vacio()) {
-			std::cout << "La lista esta vacia!\n";
-			return aaa;
-		}
+	LeadQueue<T> GetLeads() {
+		LeadQueue<T> queue;
 		Nodo* aux = head;
 		while (aux != nullptr) {
-			if (aux->contacto->getAvance() == t) {
-				aaa.pushback(*aux->contacto);
+			if (aux->contacto->getTipo() == Tag::LEAD) {
+				queue.enqueue(*aux->contacto);
 			}
 			aux = aux->next;
 		}
-		return aaa;
-	}
-
-	LeadQueue<T> GetLeads() {
-		LeadQueue<T> cola;
-		Nodo* aux = head;
+		return queue;
 	}
 
 

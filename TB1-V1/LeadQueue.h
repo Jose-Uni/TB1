@@ -21,11 +21,14 @@ public:
 
     bool Vacio() { return len == 0; }
 
+    int Size() { return len; }
+
     void enqueue(Contact<T> c) {
         Contact<T>* nuevo = new Contact<T>(c);
-        Nodo* neo = new Nodo(nuevo);
+        Nodo* neo = new Nodo(*nuevo);
         if (tail == nullptr) {
             head = tail = neo;
+            len++;
             return;
         }
         tail->next = neo;
