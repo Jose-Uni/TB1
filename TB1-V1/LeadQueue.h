@@ -9,7 +9,7 @@ private:
     public:
         Contact<T>* Lead;
         Nodo* next;
-        Nodo(Contact<T>& cont, Nodo* nex = nullptr) : contacto(&cont), next(nex) {};
+        Nodo(Contact<T>& cont, Nodo* nex = nullptr) : Lead(&cont), next(nex) {};
     };
     Nodo* head;
     Nodo* tail;
