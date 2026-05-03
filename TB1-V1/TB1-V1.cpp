@@ -11,5 +11,8 @@ int main()  {
 	intro->Animación();
 	system("pause");
 	delete intro;
+
+	Contactlist<string> lista;
+	OpportunityList<string> lista2;
    
 }
