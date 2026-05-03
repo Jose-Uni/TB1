@@ -1,5 +1,6 @@
 #pragma once
 #include "Contact.h"
+#include "LeadQueue.h"
 
 template <typename T>
 class Contactlist
@@ -225,6 +226,18 @@ public:
 			aux = aux->next;
 		}
 		return aaa;
+	}
+
+	LeadQueue<T> GetLeads() {
+		LeadQueue<T> queue;
+		Nodo* aux = head;
+		while (aux != nullptr) {
+			if (aux->contacto->getTipo() == Tag::LEAD) {
+				queue.enqueue(*aux->contacto);
+			}
+			aux = aux->next;
+		}
+		return queue;
 	}
 
 

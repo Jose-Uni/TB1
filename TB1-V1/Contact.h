@@ -1,5 +1,5 @@
 #pragma once
-#include "Intro.h"
+#include "Header.h"
 
 template<typename T>
 class Contact
@@ -14,7 +14,7 @@ private:
 	T cargo;   //seria el puesto en su empresa 
 	bool estado;
 	Tag Tipo;  //es lo que es el para nosotros
-	Etapa AvanceVenta;
+	
 
 public:
 	Contact() {
@@ -33,7 +33,7 @@ public:
 	void setTelefono(int a) { telefono = a; }
 	void setEstado(bool a) { estado = a; }
 	void setTipo(Tag a) { Tipo = a; }
-	void setAvance(Etapa a) { AvanceVenta = a; }
+	
 
 	T getId() { return id; }
 	T getNombre() { return nombre; }
@@ -44,8 +44,7 @@ public:
 	int getTelefono() { return telefono; }
 	bool getEstado() { return estado; }
 	Tag getTipo() { return Tipo; }
-	Etapa getAvance() { return AvanceVenta; }
-
+	
 
 	int generateId() {
 		//nose si hacer automaticamente o tipo meter las 2 letras del nombre, 3 letras del apellido y asi aa
