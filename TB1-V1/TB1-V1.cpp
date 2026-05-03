@@ -1,5 +1,7 @@
 #include <iostream>
 #include "Intro.h"
+#include "ContactList.h"
+#include "OpportunityList.h"
 
 using namespace std;
 

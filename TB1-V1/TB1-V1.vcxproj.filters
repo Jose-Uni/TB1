@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Archivos de encabezado\Classes">
+      <UniqueIdentifier>{83ae5b0d-abeb-440c-bbab-6fd8450f81dd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TB1-V1.cpp">
@@ -23,6 +26,17 @@
     <ClInclude Include="Intro.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="Contact.h">
+      <Filter>Archivos de encabezado\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="ContactList.h">
+      <Filter>Archivos de encabezado\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Opportunities.h">
+      <Filter>Archivos de encabezado\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="OpportunityList.h">
+      <Filter>Archivos de encabezado\Classes</Filter>
     <ClInclude Include="Letras.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
