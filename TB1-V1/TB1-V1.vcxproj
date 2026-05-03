@@ -142,7 +142,11 @@
     <ClCompile Include="TB1-V1.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Contact.h" />
+    <ClInclude Include="ContactList.h" />
     <ClInclude Include="Intro.h" />
+    <ClInclude Include="Opportunities.h" />
+    <ClInclude Include="OpportunityList.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

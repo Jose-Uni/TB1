@@ -1,0 +1,110 @@
+#pragma once
+#include "Opportunities.h"
+
+template<typename T>
+class OpportunityList
+{
+private:
+    struct Nodo
+    {
+        Opportunity* oportunidad;
+        Nodo* prev;
+        Nodo* next;
+        Nodo(T& data, Nodo* des = nullptr, Nodo* ant = nullptr) : data(data), next(des), prev(ant) {};
+    };
+    Nodo* head;
+    int len;
+
+public:
+    OpportunityList() : head(nullptr), len(0) {};
+    ~OpportunityList() {
+        while (head != nullptr) {
+            Nodo* aux = head;
+            head = head->next;
+            delete aux;
+        }
+    };
+
+    bool Vacio() {
+        return len == 0;
+    }
+
+    Nodo* Indice(int pos) {
+        if (pos >= len) {
+            return nullptr;
+        }
+        int index = 0;
+        Nodo* aux = head;
+        while (index < pos) {
+            aux = aux->next;
+            index++;
+        }
+        return aux;
+    }
+
+    void pushback(T dat) {
+        Nodo* nuevo = new Nodo(dat);
+        if (head == nullptr) head = nuevo;
+        else {
+            Nodo* aux = Indice(len - 1);
+            aux->next = nuevo;
+            nuevo->prev = aux;
+
+        }
+        len++;
+    }
+
+    void pushfront(T data) {
+        Nodo* node = new Nodo(data);
+        if (Vacio()) {
+            node->prev = nullptr;
+            node->next = nullptr;
+        }
+        else {
+            Nodo* aux = head;
+            node->prev = nullptr;
+            node->next = head;
+            aux->prev = node;
+
+
+        }
+        head = node;
+        len++;
+    }
+
+    Nodo* FindID(T id) {
+        if (Vacio()) {
+            std::cout << "La lista esta vacia!\n";
+            return nullptr;
+        }
+
+        Nodo* aux = head;
+        while (aux != nullptr) {
+
+            if (aux->oportunidad->getId() == id) {
+                return aux;
+            }
+            aux = aux->next;
+        }
+        std::cout << "No se encontro el contacto!\n";
+        return nullptr;
+    }
+
+    void DeleteID(T i) {
+        Nodo* aux = FindID(i);
+
+        if (aux == nullptr) return;
+
+        if (aux == head) head = aux->next;
+        else {
+            Nodo* auxaux = aux->prev;
+            auxaux->next = aux->next;
+        }
+
+        delete aux->oportunidad;
+        delete aux;
+
+    }
+
+
+};
