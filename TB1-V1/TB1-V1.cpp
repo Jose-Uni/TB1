@@ -9,5 +9,5 @@ int main()  {
 	intro->Animación();
 	system("pause");
 	delete intro;
-	
+   
 }
