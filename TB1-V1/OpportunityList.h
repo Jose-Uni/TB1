@@ -10,7 +10,7 @@ private:
         Opportunity<T>* oportunidad;
         Nodo* prev;
         Nodo* next;
-        Nodo(Opportunity<T>& data, Nodo* des = nullptr, Nodo* ant = nullptr) : Opportunity<T>(&data), next(des), prev(ant) {};
+        Nodo(Opportunity<T>& data, Nodo* des = nullptr, Nodo* ant = nullptr) : Opportunity(&data), next(des), prev(ant) {};
     };
     Nodo* head;
     int len;
@@ -43,7 +43,8 @@ public:
     }
 
     void pushback(Opportunity<T> dat) {
-        Nodo* nuevo = new Nodo(dat);
+        Opportunity<T>* nuevo = new Opportunity<T>(dat);   
+        Nodo* neo = new Nodo(*nuevo);
         if (head == nullptr) head = nuevo;
         else {
             Nodo* aux = Indice(len - 1);
@@ -55,7 +56,8 @@ public:
     }
 
     void pushfront(Opportunity<T> data) {
-        Nodo* node = new Nodo(data);
+        Opportunity<T>* nuevo = new Opportunity<T>(data);  
+        Nodo* node = new Nodo(*nuevo);
         if (Vacio()) {
             node->prev = nullptr;
             node->next = nullptr;
