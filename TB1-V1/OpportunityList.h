@@ -10,7 +10,7 @@ private:
         Opportunity<T>* oportunidad;
         Nodo* prev;
         Nodo* next;
-        Nodo(Opportunity<T>& data, Nodo* des = nullptr, Nodo* ant = nullptr) : Opportunity<T>(data), next(des), prev(ant) {};
+        Nodo(Opportunity<T>& data, Nodo* des = nullptr, Nodo* ant = nullptr) : Opportunity<T>(&data), next(des), prev(ant) {};
     };
     Nodo* head;
     int len;
@@ -42,7 +42,7 @@ public:
         return aux;
     }
 
-    void pushback(T dat) {
+    void pushback(Opportunity<T> dat) {
         Nodo* nuevo = new Nodo(dat);
         if (head == nullptr) head = nuevo;
         else {
@@ -51,10 +51,10 @@ public:
             nuevo->prev = aux;
 
         }
-        len++;
+        len++;  
     }
 
-    void pushfront(T data) {
+    void pushfront(Opportunity<T> data) {
         Nodo* node = new Nodo(data);
         if (Vacio()) {
             node->prev = nullptr;
@@ -99,15 +99,19 @@ public:
         else {
             Nodo* auxaux = aux->prev;
             auxaux->next = aux->next;
+            if (aux->next) aux->next->prev = auxaux;
         }
 
         delete aux->oportunidad;
         delete aux;
+        len--;
 
     }
 
-    Opportunity<T>* GetOportunidad(Nodo* a) {
-        return a->oportunidad;
+    Opportunity<T>* GetOportunidad(T id) {
+        Nodo* aux = FindID(id);
+        if (aux == nullptr) return nullptr;
+        return aux->oportunidad;
     }
 
     OpportunityList FiltrarEtapa(Etapa e) {
@@ -119,12 +123,58 @@ public:
         Nodo* aux = head;
         while (aux != nullptr) {
             if (aux->oportunidad->getAvance() == e) {
-                aaa.pushback(*aux->contacto);
+                aaa.pushback(*aux->oportunidad);
             }
             aux = aux->next;
         }
         return aaa;
+    }
 
+    OpportunityList FiltrarContacto(T i) {
+        OpportunityList aaa;
+        if (Vacio()) {
+            std::cout << "La lista esta vacia!\n";
+            return aaa;
+        }
+        Nodo* aux = head;
+        while (aux != nullptr) {
+            if (aux->oportunidad->getContacto() == i) {
+                aaa.pushback(*aux->oportunidad);
+            }
+            aux = aux->next;
+        }
+        return aaa;
+    }
+
+    OpportunityList FiltrarVendedor(T i) {
+        OpportunityList aaa;
+        if (Vacio()) {
+            std::cout << "La lista esta vacia!\n";
+            return aaa;
+        }
+        Nodo* aux = head;
+        while (aux != nullptr) {
+            if (aux->oportunidad->getVendedor() == i) {
+                aaa.pushback(*aux->oportunidad);
+            }
+            aux = aux->next;
+        }
+        return aaa;
+    }
+
+    float ValorTotal() {
+        float valor = 0;
+        if (Vacio()) {
+            std::cout << "La lista esta vacia!\n";
+            return valor;
+        }
+        Nodo* aux = head;
+        while (aux != nullptr) {
+            valor += aux->oportunidad->getValor();
+            aux = aux->next;
+        }
+
+        return valor;
     }
 
 
