@@ -147,6 +147,7 @@
     <ClInclude Include="Intro.h" />
     <ClInclude Include="Opportunities.h" />
     <ClInclude Include="OpportunityList.h" />
+    <ClInclude Include="Letras.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

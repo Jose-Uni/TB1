@@ -37,6 +37,8 @@
     </ClInclude>
     <ClInclude Include="OpportunityList.h">
       <Filter>Archivos de encabezado\Classes</Filter>
+    <ClInclude Include="Letras.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
