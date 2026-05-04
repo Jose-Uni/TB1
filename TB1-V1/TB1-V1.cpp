@@ -1,7 +1,7 @@
-#include <iostream>
 #include "Intro.h"
 #include "ContactList.h"
 #include "OpportunityList.h"
+#include "LeadQueue.h"
 
 using namespace std;
 
@@ -11,6 +11,10 @@ int main()  {
 	intro->Animación();
 	system("pause");
 	delete intro;
+
+	Contactlist<string> lista;
+	OpportunityList<string> lista2;
+	LeadQueue<string> colaa;
    
     //#Lambda1 filtra a las persona vip que estan activas
 	Contactlist<string> listaContactos;

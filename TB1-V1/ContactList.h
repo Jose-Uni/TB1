@@ -1,6 +1,7 @@
 #pragma once
 #include "Contact.h"
 #include <functional>
+#include "LeadQueue.h"
 
 template <typename T>
 class Contactlist
@@ -228,15 +229,25 @@ public:
 		return aaa;
 	}
 
-	void buscarVipActivo(function<void(Contact<T>&)>action) {
+void buscarVipActivo(function<void(Contact<T>&)> accion) {
 		Nodo* aux = head;
 		while (aux != nullptr) {
 			accion(*aux->contacto);
 			aux = aux->next;
 		}
-
 	}
 
+	LeadQueue<T> GetLeads() {
+		LeadQueue<T> queue;
+		Nodo* aux = head;
+		while (aux != nullptr) {
+			if (aux->contacto->getTipo() == Tag::LEAD) {
+				queue.enqueue(*aux->contacto);
+			}
+			aux = aux->next;
+		}
+		return queue;
+	}
 
 };
 
