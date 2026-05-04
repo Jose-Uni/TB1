@@ -1,5 +1,6 @@
 #pragma once
 #include "Contact.h"
+#include <functional>
 
 template <typename T>
 class Contactlist
@@ -227,7 +228,14 @@ public:
 		return aaa;
 	}
 
+	void buscarVipActivo(function<void(Contact<T>&)>action) {
+		Nodo* aux = head;
+		while (aux != nullptr) {
+			accion(*aux->contacto);
+			aux = aux->next;
+		}
 
+	}
 
 
 };
