@@ -1,5 +1,7 @@
 #pragma once
 #include "Opportunities.h"
+#include <functional>
+#include <vector>
 
 template<typename T>
 class OpportunityList
@@ -10,10 +12,32 @@ private:
         Opportunity<T>* oportunidad;
         Nodo* prev;
         Nodo* next;
-        Nodo(Opportunity<T>& data, Nodo* des = nullptr, Nodo* ant = nullptr) : Opportunity(&data), next(des), prev(ant) {};
+        Nodo(Opportunity<T>& data, Nodo* des = nullptr, Nodo* ant = nullptr) : oportunidad(&data), next(des), prev(ant) {};
     };
     Nodo* head;
     int len;
+
+    void Orden(vector<Opportunity<T>>& vec, int inicio, int fin,
+        function<bool(Opportunity<T>&, Opportunity<T>&)> comparar) {
+
+        if (inicio >= fin) return;
+
+        Opportunity<T> pivote = vec[fin];
+        int i = inicio - 1;
+
+        for (int j = inicio; j < fin; j++) {
+            if (comparar(vec[j], pivote)) {
+                i++;
+                swap(vec[i], vec[j]);
+            }
+        }
+
+        swap(vec[i + 1], vec[fin]);
+        int posPivote = i + 1;
+
+        Orden(vec, inicio, posPivote - 1, comparar);
+        Orden(vec, posPivote + 1, fin, comparar);
+    }
 
 public:
     OpportunityList() : head(nullptr), len(0) {};
@@ -27,6 +51,14 @@ public:
 
     bool Vacio() {
         return len == 0;
+    }
+    
+    void sumEtapa(function<void(Opportunity<T>&)> accion) {
+        Nodo* aux = head;
+        while (aux != nullptr) {
+            accion(*aux->oportunidad);
+            aux = aux->next;
+        }
     }
 
     Nodo* Indice(int pos) {
@@ -45,11 +77,11 @@ public:
     void pushback(Opportunity<T> dat) {
         Opportunity<T>* nuevo = new Opportunity<T>(dat);   
         Nodo* neo = new Nodo(*nuevo);
-        if (head == nullptr) head = nuevo;
+        if (head == nullptr) head = neo;//#Cambie el nuevo por el neo
         else {
             Nodo* aux = Indice(len - 1);
-            aux->next = nuevo;
-            nuevo->prev = aux;
+            aux->next = neo;
+            neo->prev = aux;
 
         }
         len++;  
@@ -179,7 +211,24 @@ public:
         return valor;
     }
 
+    void Orden(function<bool(Opportunity<T>&, Opportunity<T>&)> comparar) {
+        if (len <= 1) return;
 
+        vector<Opportunity<T>> vec;
+        Nodo* aux = head;
+        while (aux != nullptr) {
+            vec.push_back(*aux->oportunidad);
+            aux = aux->next;
+        }
+
+        Orden(vec, 0, vec.size() - 1, comparar);
+
+        aux = head;
+        for (int i = 0; i < vec.size(); i++) {
+            *aux->oportunidad = vec[i];
+            aux = aux->next;
+        }
+    }
 
 
 };
