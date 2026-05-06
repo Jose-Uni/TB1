@@ -46,7 +46,7 @@ public:
 	Tag getTipo() { return Tipo; }
 	
 
-	int generateId() {
+	T generateId() {
 		//nose si hacer automaticamente o tipo meter las 2 letras del nombre, 3 letras del apellido y asi aa
 		string idNew = nombre.substr(0, 2) + apellido.substr(0, 2) + empresa.substr(0, 2) + cargo.substr(0, 2);
 		setId(idNew);
