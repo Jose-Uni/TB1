@@ -1,5 +1,6 @@
 #pragma once
-#include "Header.h"
+#pragma comment(lib, "winmm.lib")
+#include "Enums.h"
 using namespace std;
 
 class Intro {
@@ -11,6 +12,7 @@ private:
 	N n;
 	E2 e2;
 	G g;
+	Sonidos son;
 	int x, y;
 	int dx;
 	CONSOLE_CURSOR_INFO cursorVisible;
@@ -61,6 +63,23 @@ public:
 		}
 		if (e2.getLlego()) {
 			g.animar(this->x,this->y,this->dx, this->hConsol);
+		}if (g.getLlego()) {
+			Pasar();
 		}
+	};
+	void Pasar() {
+		string mensaje = "Presione espacio para continuar...";
+		int x = (120 - mensaje.size()) / 2;
+		setXY(x,25);
+		cout << mensaje;
+		char tecla;
+		do {
+			tecla = _getch();
+			if (tecla != 32) {
+				son.SonidoError();
+			}
+		} while (tecla != 32);
+		son.SonidoExito();
+		system("cls");
 	};
 };

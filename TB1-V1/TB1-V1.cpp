@@ -2,6 +2,7 @@
 #include "ContactList.h"
 #include "OpportunityList.h"
 #include "LeadQueue.h"
+#include "MenuPass.h"
 
 using namespace std;
 
@@ -9,8 +10,10 @@ int main()  {
 	Intro* intro = new Intro();
 	intro->colorBF(0,10);
 	intro->Animación();
-	system("pause");
+	MenuPass* menuP = new MenuPass();
+    menuP->mostrarMenu();
 	delete intro;
+	delete menuP;
 
 	Contactlist<string> lista;
 	OpportunityList<string> lista2;
