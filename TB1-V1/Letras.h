@@ -1,9 +1,5 @@
 #pragma once
-#include <iostream>
-#include <vector>
-#include <string>
-#include <sstream>
-#include <Windows.h>
+#include "header.h"
 
 using namespace std;
 struct Vacio {

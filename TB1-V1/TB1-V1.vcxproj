@@ -145,7 +145,7 @@
     <ClInclude Include="Contact.h" />
     <ClInclude Include="ContactList.h" />
     <ClInclude Include="ContraList.h" />
-    <ClInclude Include="Enums.h" />
+    <ClInclude Include="header.h" />
     <ClInclude Include="Intro.h" />
     <ClInclude Include="LeadQueue.h" />
     <ClInclude Include="Menu.h" />
@@ -153,6 +153,8 @@
     <ClInclude Include="Opportunities.h" />
     <ClInclude Include="OpportunityList.h" />
     <ClInclude Include="Letras.h" />
+    <ClInclude Include="Sonidos.h" />
+    <ClInclude Include="User.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,7 +1,8 @@
 #pragma once
 #include "Intro.h"
 #include "ContraList.h"
-#include "Enums.h"
+#include "header.h"
+#include "User.h"
 #include <sstream>
 
 using namespace std;
