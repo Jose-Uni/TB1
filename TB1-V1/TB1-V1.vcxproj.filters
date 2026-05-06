@@ -6,7 +6,7 @@
   <ItemGroup>
     <ClInclude Include="Contact.h" />
     <ClInclude Include="ContactList.h" />
-    <ClInclude Include="Enums.h" />
+    <ClInclude Include="header.h" />
     <ClInclude Include="Intro.h" />
     <ClInclude Include="LeadQueue.h" />
     <ClInclude Include="Opportunities.h" />
@@ -15,5 +15,7 @@
     <ClInclude Include="Menu.h" />
     <ClInclude Include="ContraList.h" />
     <ClInclude Include="MenuPass.h" />
+    <ClInclude Include="Sonidos.h" />
+    <ClInclude Include="User.h" />
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 #pragma once
 #pragma comment(lib, "winmm.lib")
-#include "Enums.h"
+#include "header.h"
 using namespace std;
 
 class Intro {
