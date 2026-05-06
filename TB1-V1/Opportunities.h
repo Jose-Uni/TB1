@@ -1,6 +1,7 @@
 #pragma once
 #include "Header.h"
 
+
 template<typename T>
 class Opportunity
 {
