@@ -17,6 +17,12 @@ private:
 	Nodo* head;
 	int len;
 
+	Nodo* EncontrarId(Nodo* actual, T id) {
+		if (actual == nullptr) return nullptr;
+		if (actual->contacto->getId() == id) return actual;
+		return EncontrarId(actual->next, id);
+	}
+
 public:
 	Contactlist() : head(nullptr), len(0) {};
 	~Contactlist() {
@@ -249,5 +255,12 @@ void buscarVipActivo(function<void(Contact<T>&)> accion) {
 		return queue;
 	}
 
+	Nodo* EncontrarIdd(T id) {
+		if (vacio()) {
+			std::cout << "lista vacia\n";
+			return nullptr;
+		}
+		return EncontrarId(head, id);
+	}
 };
 
