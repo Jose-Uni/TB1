@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
-#include "Enums.h"
+#include "header.h"
 
 template <typename T>
 class Nodo {
