@@ -89,11 +89,12 @@ public:
 				if (lista.Length() != 0) {
 					lista.FindAccess(user,contra);
 				}
-				else {
+				else if (lista.Length() == 0) {
 					setXY(x2temp + m2.size() - 13, y2temp + 2);
 					cout << "Sin usuarios registrados.\n";
 				}
 				setXY(x2temp + m2.size() - 1, y2temp + 2);
+				system("cls");
 				break;
 			}
 			case 2: {

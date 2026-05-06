@@ -3,6 +3,7 @@
 #include "OpportunityList.h"
 #include "LeadQueue.h"
 #include "MenuPass.h"
+#include "Menu.h"
 
 using namespace std;
 
@@ -12,6 +13,8 @@ int main()  {
 	intro->Animación();
 	MenuPass* menuP = new MenuPass();
     menuP->mostrarMenu();
+    Menu* menuPrin = new Menu();
+    menuPrin->menu();
 	delete intro;
 	delete menuP;
 
