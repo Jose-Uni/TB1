@@ -17,26 +17,20 @@ private:
     Nodo* head;
     int len;
 
-    void Orden(vector<Opportunity<T>>& vec, int inicio, int fin,
-        function<bool(Opportunity<T>&, Opportunity<T>&)> comparar) {
+    void Orden(vector<Opportunity<T>>& vec, function<bool(Opportunity<T>&, Opportunity<T>&)> comparar) {
 
-        if (inicio >= fin) return;
+        bool ordenado;
 
-        Opportunity<T> pivote = vec[fin];
-        int i = inicio - 1;
-
-        for (int j = inicio; j < fin; j++) {
-            if (comparar(vec[j], pivote)) {
-                i++;
-                swap(vec[i], vec[j]);
+        for (int i = 0; i < vec.size()-1; i++) {
+            ordenado = true;
+            for (int j = 0; j < vec.size() - i - 1; j++) {
+                if (comparar(vec[j], vec[j+1])) {
+                    swap(vec[j], vec[j+1]);
+                    ordenado = false;
+                }
             }
+            if (ordenado) break;
         }
-
-        swap(vec[i + 1], vec[fin]);
-        int posPivote = i + 1;
-
-        Orden(vec, inicio, posPivote - 1, comparar);
-        Orden(vec, posPivote + 1, fin, comparar);
     }
 
 public:
@@ -221,7 +215,7 @@ public:
             aux = aux->next;
         }
 
-        Orden(vec, 0, vec.size() - 1, comparar);
+        Orden(vec, comparar);
 
         aux = head;
         for (int i = 0; i < vec.size(); i++) {

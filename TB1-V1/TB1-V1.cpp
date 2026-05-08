@@ -27,9 +27,9 @@ int main()  {
             if (c.getTipo() == Tag::VIP && c.getEstado() == true) {
                 resultado.pushback(c);
             }
-            });
+        });
         return resultado;
-        };
+    };
 
     //!Colocar esta linea en el menu
     Contactlist<string> vipsActivos = filtrarVIPActivos(listaContactos);
@@ -39,11 +39,11 @@ int main()  {
     OpportunityList<string> listaOportunidades;
     auto porValor = [](Opportunity<string>& a, Opportunity<string>& b) {
         return a.getValor() > b.getValor();
-        };
+    };
 
     auto porEtapa = [](Opportunity<string>& a, Opportunity<string>& b) {
         return static_cast<int>(a.getAvance()) < static_cast<int>(b.getAvance());
-        };
+    };
 
     //!Colocar esta linea en el menu
     listaOportunidades.Orden(porValor);
@@ -57,9 +57,9 @@ int main()  {
             if (o.getAvance() == etapa) {
                 total += o.getValor();
             }
-            });
-        return total;
-        };
+        });
+        return total;    
+    };
 
     float ganadas = totalPorEtapa(listaOportunidades, Etapa::CERRADO_GANADO);
     float enNegociacion = totalPorEtapa(listaOportunidades, Etapa::NEGOCIACION);

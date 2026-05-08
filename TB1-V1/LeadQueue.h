@@ -17,7 +17,14 @@ private:
 
 public:
 	LeadQueue():head(nullptr),tail(nullptr),len(0) {};
-	~LeadQueue() {};
+	~LeadQueue() {
+        while (head != nullptr) {
+            Nodo* aux = head;
+            head = head->next;
+            delete aux->Lead;   
+            delete aux;          
+        }
+    };
 
     bool Vacio() { return len == 0; }
 
