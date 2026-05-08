@@ -2,7 +2,7 @@
 #include "Intro.h"
 #include "ContraList.h"
 #include "header.h"
-#include "User.h"
+#include "UserList.h"
 #include <sstream>
 
 using namespace std;
@@ -32,6 +32,8 @@ struct Welcome {
 class MenuPass {
 private:
 	int x, y;
+	bool pass = false;
+	UserList usuarios;
 	ContraList<User> lista;
 	Welcome w;
 	HANDLE hConsol = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -54,7 +56,7 @@ public:
 	}
 	void mostrarMenu() {
 		int z;
-		while(lista.getPass() == false) {
+		while(!pass) {
 			system("cls");
 			setXY(x, y);
 			w.mostrar(x, y, hConsol);
@@ -87,8 +89,8 @@ public:
 				cin >> user;
 				setXY(x2temp + m2.size() - 1, y2temp + 1);
 				cin >> contra;
-				if (lista.Length() != 0) {
-					lista.FindAccess(user,contra);
+				if (!usuarios.vacio()) {
+					pass=usuarios.FindAccess(user,contra);
 				}
 				else {
 					setXY(x2temp + m2.size() - 13, y2temp + 2);
@@ -113,7 +115,7 @@ public:
 				setXY(x2temp + m2.size() - 1, y2temp + 1);
 				cin >> contra;
 				User newUser(user,contra);
-				lista.AddFirst(newUser);
+				usuarios.pushback(newUser);
 				setXY(x2temp, y2temp + 3);
 				cout << "Usuario registrado.\n";
 				Sleep(500);

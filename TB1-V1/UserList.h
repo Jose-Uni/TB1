@@ -56,25 +56,25 @@ public:
 
 	}
 
-	void FindAccess(string user, string contra) {
+	bool FindAccess(string user, string contra) {
 		Nodo* aux = head;
-		int pos = 0;
+		
 		while (aux != nullptr) {
 			if (aux->user->getUser() == user && aux->user->getPass() == contra) {
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 52, 20 });
 				std::cout << "Acceso concedido.\n";
 				Sleep(500);
-				pass = true;
-				return;
+				return true;
 			}
 			else {
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 52, 20 });
 				std::cout << "Acceso denegado.\n";
 				Sleep(500);
-				break;
+				return false;
+				
 			}
 			aux = aux->next;
-			pos++;
+		
 		}
 	}
 
