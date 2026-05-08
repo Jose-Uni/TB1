@@ -144,7 +144,6 @@
   <ItemGroup>
     <ClInclude Include="Contact.h" />
     <ClInclude Include="ContactList.h" />
-    <ClInclude Include="ContraList.h" />
     <ClInclude Include="header.h" />
     <ClInclude Include="Intro.h" />
     <ClInclude Include="LeadQueue.h" />

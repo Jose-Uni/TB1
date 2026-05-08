@@ -1,6 +1,5 @@
 #pragma once
 #include "Intro.h"
-#include "ContraList.h"
 #include "header.h"
 #include "UserList.h"
 #include <sstream>
@@ -34,7 +33,6 @@ private:
 	int x, y;
 	bool pass = false;
 	UserList usuarios;
-	ContraList<User> lista;
 	Welcome w;
 	HANDLE hConsol = GetStdHandle(STD_OUTPUT_HANDLE);
 public:
