@@ -235,7 +235,7 @@ public:
 		return aaa;
 	}
 
-void buscarVipActivo(function<void(Contact<T>&)> accion) {
+	void buscarVipActivo(function<void(Contact<T>&)> accion) {
 		Nodo* aux = head;
 		while (aux != nullptr) {
 			accion(*aux->contacto);
