@@ -15,10 +15,15 @@ private:
 	T vendedorAsignado;
 	T contactoId;
 public:
-	Opportunity() {};
+	Opportunity(T ttl, float vlr, Etapa etp, T fi, T fc, T vdAs, T contactoId) :
+		titulo(ttl), valor(vlr), AvanceVenta(etp), fechaInicio(fi),
+		fechaCierre(fc), vendedorAsignado(vdAs), contactoId(contactoId)
+	{
+		id = generateId();
+	};
 	~Opportunity() {};
 
-	void setId(T i) { id = i; }
+	void setId() { id = generateId(); }
 	void setTitulo(T i) { titulo = i; }
 	void setFechaI(T i) { fechaInicio = i; }
 	void setFechaC(T i) { fechaCierre = i; }
@@ -36,6 +41,10 @@ public:
 	float getValor() { return valor; }
 	Etapa getAvance() { return AvanceVenta; }
 
-
+	T generateId() {
+		
+		T idNew = titulo.substr(0, 2) + vendedorAsignado.substr(0, 2) + fechaInicio.substr(0, 2)+fechaCierre.substr(0, 2);
+		return idNew;
+	};
 };
 

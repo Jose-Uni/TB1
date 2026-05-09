@@ -200,25 +200,6 @@ public:
 
 	}
 
-	Contactlist FiltarEstado(bool e) {
-		Contactlist aaa;
-
-		if (vacio()) {
-			std::cout << "La lista esta vacia!\n";
-			return aaa;
-		}
-		Nodo* aux = head;
-		while (aux != nullptr) {
-
-			if (aux->contacto->getEstado() == e) {
-				aaa.pushback(*aux->contacto);
-			}
-			aux = aux->next;
-		}
-
-		return aaa;
-	}
-
 	Contactlist FiltrarTipo(Tag t) {
 		Contactlist aaa;
 		if (vacio()) {
