@@ -56,21 +56,21 @@ public:
 	}
 	void menu() {
 		int xn = (120 - 55) / 2;
-		pr.mostrar(xn,y+1, hConsol);
+		pr.mostrar(xn, y + 1, hConsol);
 		encuadre1();
 		encuadre2();
 		opciones();
-		
-		
+
+
 	}
 	void encuadre1() {
 		int xn = 0, yn = 8;
-		for (int i = 1; i < 90 ; i++) {
-			setXY(i,yn);
+		for (int i = 1; i < 90; i++) {
+			setXY(i, yn);
 			cout << "-";
 		}
-		for (int i = 1; i < 90 ; i++) {
-			setXY(i,yn+18);
+		for (int i = 1; i < 90; i++) {
+			setXY(i, yn + 18);
 			cout << "-";
 		}
 		for (int i = 8; i < 27; i++) {
@@ -78,18 +78,18 @@ public:
 			cout << "|";
 		}
 		for (int i = 8; i < 27; i++) {
-			setXY(xn+89, i);
+			setXY(xn + 89, i);
 			cout << "|";
 		}
 	}
 	void encuadre2() {
 		int xn = 90, yn = 8;
-		for (int i = 1; i < 28 ; i++) {
-			setXY(xn+i,yn);
+		for (int i = 1; i < 28; i++) {
+			setXY(xn + i, yn);
 			cout << "-";
 		}
-		for (int i = 1; i < 28 ; i++) {
-			setXY(xn+i,yn+18);
+		for (int i = 1; i < 28; i++) {
+			setXY(xn + i, yn + 18);
 			cout << "-";
 		}
 		for (int i = 8; i < 27; i++) {
@@ -97,7 +97,7 @@ public:
 			cout << "|";
 		}
 		for (int i = 8; i < 27; i++) {
-			setXY(xn+28, i);
+			setXY(xn + 28, i);
 			cout << "|";
 		}
 	}
@@ -112,19 +112,19 @@ public:
 			pr.mostrar(xn, y + 1, hConsol);
 			encuadre1();
 			encuadre2();
-			setXY(2,9);cout << "Hola, usuario " << userPs->nombreUsuario() << "\n";
-			setXY(2,11);cout << "[1] SubMenu contactos\n";
-			setXY(2,12);cout << "[2] SubMenu ventas\n";
-			setXY(2,13);cout << "[3] Ver contactos\n";
-			setXY(2,14);cout << "[4] Ver ventas\n";
-			setXY(2,15);cout << "[5] Ver oportunidades\n";
-			setXY(2,16);cout << "[6] Verificar leads\n";
-			setXY(2,17);cout << "[7] Salir\n";
+			setXY(2, 9); cout << "Hola, usuario " << userPs->nombreUsuario() << "\n";
+			setXY(2, 11); cout << "[1] SubMenu contactos\n";
+			setXY(2, 12); cout << "[2] SubMenu ventas\n";
+			setXY(2, 13); cout << "[3] Ver contactos\n";
+			setXY(2, 14); cout << "[4] Ver ventas\n";
+			setXY(2, 15); cout << "[5] Ver oportunidades\n";
+			setXY(2, 16); cout << "[6] Verificar leads\n";
+			setXY(2, 17); cout << "[7] Salir\n";
 			setXY(2, 19); cout << "Opcion: [   ]";
 			setXY(12, 19); cin >> opcion;
 			switch (opcion) {
 			case 1: {
-				system("cls"); 
+				system("cls");
 				int opcionC = 0;
 				int xn = (120 - 55) / 2;
 				pr.mostrar(xn, y + 1, hConsol);
@@ -138,42 +138,42 @@ public:
 				setXY(2, 15); cout << "Opcion: [   ]";
 				setXY(12, 15); cin >> opcionC;
 				switch (opcionC) {
-					case 1: {
-						system("cls");
-						int xn = (120 - 55) / 2;
-						pr.mostrar(xn, y + 1, hConsol);
-						encuadre1();
-						encuadre2();
-						setXY(2, 9); cout << "Anadir Contactos";
-						string nombre, apellido, email, empresa, cargo;
-						int telefeno, tag;
-						setXY(2, 11); cout << "Ingrese el nombre: "; cin.ignore(); getline(cin,nombre);
-						setXY(2, 12); cout << "Ingrese el apellido: "; getline(cin, apellido);
-						setXY(2, 13); cout << "Ingrese el email: "; getline(cin, email);
-						setXY(2, 14); cout << "Ingrese el teléfono: "; cin >> telefeno;
-						setXY(2, 15); cout << "Ingrese la empresa: "; cin.ignore(); getline(cin, empresa);
-						setXY(2, 16); cout << "Ingrese el cargo: "; getline(cin, cargo);
-						setXY(2, 17); cout << "Ingrese el Tipo (de 0 a 6): "; 
-						setXY(2, 18); cout << "LEAD,PROSPECTO,CLIENTE,VIP,INACTIVO,FRECUENTE,CORPORATIVO: "; cin >> tag;
-						setXY(2, 19); cout << "Contacto añadido exitosamente!";
-						Contact<string> contacto(nombre, apellido, email, telefeno, empresa, cargo, static_cast<Tag>(tag));
-						contactoList.pushback(contacto);
-						break;
-					}
-					case 2: {
-						system("cls");
-						int xn = (120 - 55) / 2;
-						pr.mostrar(xn, y + 1, hConsol);
-						encuadre1();
-						encuadre2();
-						setXY(2, 9); cout << "Editar Contactos";
-						string nombre, apellido, email, empresa, cargo;
-						int telefeno, tag;
-						string id;
-						setXY(2, 10); cout << "Ingrese el ID del contacto a editar: ";
-						setXY(2, 11); cout << "ID = 2 1eras letras de: Nombre, Apelldio, Empresa y Cargo: "; cin >> id;
-						Contact<string>* contacto = contactoList.GetContacto(id);
-						if (contacto != nullptr) {
+				case 1: {
+					system("cls");
+					int xn = (120 - 55) / 2;
+					pr.mostrar(xn, y + 1, hConsol);
+					encuadre1();
+					encuadre2();
+					setXY(2, 9); cout << "Anadir Contactos";
+					string nombre, apellido, email, empresa, cargo;
+					int telefeno, tag;
+					setXY(2, 11); cout << "Ingrese el nombre: "; cin.ignore(); getline(cin, nombre);
+					setXY(2, 12); cout << "Ingrese el apellido: "; getline(cin, apellido);
+					setXY(2, 13); cout << "Ingrese el email: "; getline(cin, email);
+					setXY(2, 14); cout << "Ingrese el teléfono: "; cin >> telefeno;
+					setXY(2, 15); cout << "Ingrese la empresa: "; cin.ignore(); getline(cin, empresa);
+					setXY(2, 16); cout << "Ingrese el cargo: "; getline(cin, cargo);
+					setXY(2, 17); cout << "Ingrese el Tipo (de 0 a 6): ";
+					setXY(2, 18); cout << "LEAD,PROSPECTO,CLIENTE,VIP,INACTIVO,FRECUENTE,CORPORATIVO: "; cin >> tag;
+					setXY(2, 19); cout << "Contacto añadido exitosamente!";
+					Contact<string> contacto(nombre, apellido, email, telefeno, empresa, cargo, static_cast<Tag>(tag));
+					contactoList.pushback(contacto);
+					break;
+				}
+				case 2: {
+					system("cls");
+					int xn = (120 - 55) / 2;
+					pr.mostrar(xn, y + 1, hConsol);
+					encuadre1();
+					encuadre2();
+					setXY(2, 9); cout << "Editar Contactos";
+					string nombre, apellido, email, empresa, cargo;
+					int telefeno, tag;
+					string id;
+					setXY(2, 10); cout << "Ingrese el ID del contacto a editar: ";
+					setXY(2, 11); cout << "ID = 2 1eras letras de: Nombre, Apelldio, Empresa y Cargo: "; cin >> id;
+					Contact<string>* contacto = contactoList.GetContacto(id);
+					if (contacto != nullptr) {
 						char rpta;
 						setXY(2, 12); cout << "Modificar el nombre ? "; cin >> rpta;
 						if (toupper(rpta) == 'S') {
@@ -183,7 +183,7 @@ public:
 						if (toupper(rpta) == 'S') {
 							setXY(26, 13); cout << "Ingrese el nuevo apellido: "; cin.ignore(); getline(cin, apellido);
 						}
-						setXY(2, 14	); cout << "Modificar el email? "; cin >> rpta;
+						setXY(2, 14); cout << "Modificar el email? "; cin >> rpta;
 						if (toupper(rpta) == 'S') {
 							setXY(23, 14); cout << "Ingrese el nuevo email: "; cin.ignore(); getline(cin, email);
 						}
@@ -205,27 +205,27 @@ public:
 						}
 						contacto->setId();
 						setXY(2, 19); cout << "Contacto modificado exitosamente!"; cin >> rpta;
-						}
-						else {
-							setXY(2, 10); cout << "Contacto no encontrado!\n";
-						}
-						break;
 					}
-					case 3: {
-						system("cls");
-						int xn = (120 - 55) / 2;
-						pr.mostrar(xn, y + 1, hConsol);
-						encuadre1();
-						encuadre2();
-						string id;
-						setXY(2, 9); cout << "Eliminar Contactos";
-						setXY(2, 10); cout << "Ingrese el ID del contacto a eliminar: ";
-						setXY(2, 11); cout << "ID = 2 1eras letras de: Nombre, Apelldio, Empresa y Cargo: "; cin >> id;
-						Contact<string>* contacto = contactoList.GetContacto(id);
-						contacto->setTipo(Tag::INACTIVO);
+					else {
+						setXY(2, 10); cout << "Contacto no encontrado!\n";
 					}
-					case 4: 
-						break;
+					break;
+				}
+				case 3: {
+					system("cls");
+					int xn = (120 - 55) / 2;
+					pr.mostrar(xn, y + 1, hConsol);
+					encuadre1();
+					encuadre2();
+					string id;
+					setXY(2, 9); cout << "Eliminar Contactos";
+					setXY(2, 10); cout << "Ingrese el ID del contacto a eliminar: ";
+					setXY(2, 11); cout << "ID = 2 1eras letras de: Nombre, Apelldio, Empresa y Cargo: "; cin >> id;
+					Contact<string>* contacto = contactoList.GetContacto(id);
+					contacto->setTipo(Tag::INACTIVO);
+				}
+				case 4:
+					break;
 				}
 				break;
 			}
@@ -270,11 +270,11 @@ public:
 						setXY(2, 17); cout << "Venta creada exitosamente!";
 						Opportunity<string> oportunidad(titulo, valor, static_cast<Etapa>(avance), fechaI, fechaF, vendedor, id);
 						oportunidadList.pushback(oportunidad);
-						
+
 					}
 					else {
 						setXY(2, 11); cout << "No existe contacto con ese ID";
-					
+
 					}
 					break;
 				}
@@ -322,13 +322,16 @@ public:
 					}
 					else {
 						setXY(2, 10); cout << "Venta no encontrada!\n";
-						
+
 					}
-						break;
-				}
-				case 4: {}
-				case 5: 
 					break;
+				}
+				case 4: {
+					break;
+				case 5:
+					break;
+				}
+
 				}
 			}
 			case 3: {
@@ -365,11 +368,9 @@ public:
 			}
 			case 7:
 				break;
+
 			}
-
 		} while (opcion != 7);
-
 	}
-	
 	
 };
