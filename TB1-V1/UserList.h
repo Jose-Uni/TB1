@@ -1,5 +1,6 @@
 #pragma once
 #include "User.h"
+#include <fstream>
 
 class UserList
 {
@@ -113,6 +114,18 @@ public:
 
 		if (aux == nullptr) return nullptr;
 		return aux->user;
+	}
+
+	void recorrer(ofstream& file) {
+		Nodo* aux = head;
+		while (aux != nullptr) {
+			file << aux->user->getUser() << "\n";
+			file << aux->user->getUserPass() << "\n";
+			file << aux->user->getPass() << "\n";
+			file << aux->user->getId() << "\n";
+			file << "---\n";
+			aux = aux->next;
+		}
 	}
 };
 

@@ -11,6 +11,7 @@ private:
 	static int cant;
 
 public:
+	User() {};
 	User(string user, string pass): username(user),usernamePass(""), password(pass) {
 		cant++;
 		string idNew = "V"+username.substr(0, 4) + to_string(cant);

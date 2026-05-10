@@ -2,6 +2,7 @@
 #include "Opportunities.h"
 #include <functional>
 #include <vector>
+#include <fstream>
 
 template<typename T>
 class OpportunityList
@@ -51,6 +52,22 @@ public:
         Nodo* aux = head;
         while (aux != nullptr) {
             accion(*aux->oportunidad);
+            aux = aux->next;
+        }
+    }
+
+    void recorrer(ofstream& file) {
+        Nodo* aux = head;
+        while (aux != nullptr) {
+            file << aux->oportunidad->getId() << "\n";
+            file << aux->oportunidad->getTitulo() << "\n";
+            file << static_cast<float>(aux->oportunidad->getValor()) << "\n";
+            file << static_cast<int>(aux->oportunidad->getAvance()) << "\n";
+            file << aux->oportunidad->getFechaI() << "\n";
+            file << aux->oportunidad->getFechaC() << "\n";
+            file << aux->oportunidad->getVendedor() << "\n";
+            file << aux->oportunidad->getContacto() << "\n";
+            file << "---\n";
             aux = aux->next;
         }
     }

@@ -35,7 +35,7 @@ private:
 	UserList* userPs;
 	Contactlist<string> contactoList;
 	OpportunityList<string> oportunidadList;
-	FileManager archivos=FileManager(&contactoList, &oportunidadList, userPs);
+	FileManager archivos;
 
 	CONSOLE_CURSOR_INFO cursorVisible;
 	HANDLE hConsol = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -46,6 +46,7 @@ public:
 		cursorVisible.bVisible = FALSE;
 		cursorVisible.dwSize = 1;
 		SetConsoleCursorInfo(hConsol, &cursorVisible);
+		archivos = FileManager(&contactoList, &oportunidadList, userPs);
 	}
 	~Menu() {
 	

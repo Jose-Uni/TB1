@@ -2,6 +2,7 @@
 #include "Contact.h"
 #include <functional>
 #include "LeadQueue.h"
+#include <fstream>
 
 template <typename T>
 class Contactlist
