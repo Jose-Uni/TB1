@@ -517,11 +517,109 @@ public:
 			}break;
 			case 5: {
 				system("cls");
-				int opcionC = 0;
+				int opcionF = 0;
 				int xn = (120 - 55) / 2;
 				pr.mostrar(xn, y + 1, hConsol);
 				encuadre1();
 				encuadre2();
+				setXY(2, 9);  cout << "Reportes y Filtros Avanzados";
+				setXY(2, 11); cout << "[1] Filtrar Contactos VIP";
+				setXY(2, 12); cout << "[2] Ordenar Ventas (Por Valor/Etapa) y Ver";
+				setXY(2, 13); cout << "[3] Resumen Financiero del Pipeline (Dinero)";
+				setXY(2, 15); cout << "[4] Regresar al Menu Principal";
+				setXY(2, 17); cout << "Opcion: [   ]";
+				setXY(12,17); cin >> opcionF;
+				switch (opcionF) {
+				case 1: { 
+					system("cls");
+					pr.mostrar(xn, y + 1, hConsol);
+					encuadre1(); encuadre2();
+					setXY(2, 9); cout << "--- Contactos VIPs Activos ---";
+
+					
+					auto filtrarVIPActivos = [&](Contactlist<string>& lista) {
+						Contactlist<string> resultado;
+						lista.buscarVipActivo([&](Contact<string>& c) {
+							if (c.getTipo() == Tag::VIP) {
+								resultado.pushback(c);
+							}
+							});
+						return resultado;
+						};
+
+					Contactlist<string> vipsActivos = filtrarVIPActivos(contactoList);
+
+					if (vipsActivos.vacio()) {
+						setXY(2, 11); cout << "No hay clientes VIP registrados.";
+					}
+					else {
+						int posY = 11;
+						// Iteramos sobre la nueva lista filtrada
+						for (auto it = vipsActivos.begin(); it != vipsActivos.end(); ++it) {
+							setXY(2, posY++); cout << "- " << (*it).getNombre() << " " << (*it).getApellido() << " (Empresa: " << (*it).getEmpresa() << ")";
+						}
+					}
+					setXY(2, 20); cout << "Presione cualquier tecla para regresar...";
+					_getch();
+				} break;
+
+				case 2: { 
+					auto porValor = [](Opportunity<string>& a, Opportunity<string>& b) {
+						return a.getValor() > b.getValor();
+						};
+
+					auto porEtapa = [](Opportunity<string>& a, Opportunity<string>& b) {
+						return static_cast<int>(a.getAvance()) < static_cast<int>(b.getAvance());
+						};
+
+					
+					oportunidadList.Orden(porValor);
+					oportunidadList.Orden(porEtapa);
+
+					system("cls");
+					setXY(2, 9); cout << "Lista de oportunidades ordenada correctamente.";
+					setXY(2, 10); cout << "Iniciando visualizador...";
+					_getch();
+
+					MostrarVemtas();
+				} break;
+
+				case 3: { 
+					system("cls");
+					pr.mostrar(xn, y + 1, hConsol);
+					encuadre1(); encuadre2();
+					setXY(2, 9); cout << "--- Resumen Financiero de Ventas ---";
+
+					
+					auto totalPorEtapa = [&](OpportunityList<string>& lista, Etapa etapa) {
+						float total = 0.0f;
+						lista.sumEtapa([&](Opportunity<string>& o) {
+							if (o.getAvance() == etapa) {
+								total += o.getValor();
+							}
+							});
+						return total;
+						};
+
+				
+					float ganadas = totalPorEtapa(oportunidadList, Etapa::CERRADO_GANADO);
+					float enNegociacion = totalPorEtapa(oportunidadList, Etapa::NEGOCIACION);
+					float perdidas = totalPorEtapa(oportunidadList, Etapa::CERRADO_PERDIDO);
+					float enPropuesta = totalPorEtapa(oportunidadList, Etapa::PROPUESTA);
+
+					
+					setXY(2, 12); cout << "Dinero en Cierres Ganados: $" << ganadas;
+					setXY(2, 13); cout << "Dinero en Negociacion:     $" << enNegociacion;
+					setXY(2, 14); cout << "Dinero en Propuestas:      $" << enPropuesta;
+					setXY(2, 15); cout << "Dinero Perdido:            $" << perdidas;
+
+					setXY(2, 17); cout << "Total del Pipeline Activo (Negociacion + Propuesta): $" << (enNegociacion + enPropuesta);
+
+					setXY(2, 20); cout << "Presione cualquier tecla para regresar...";
+					_getch();
+				} break;
+
+				} 
 				
 			}break;
 			case 6: {
