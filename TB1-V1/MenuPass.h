@@ -34,7 +34,7 @@ private:
 	int x, y;
 	bool pass = false;
 	UserList* usuarios;
-	string idusuario;
+	User* actual=nullptr;
 	Welcome w;
 	HANDLE hConsol = GetStdHandle(STD_OUTPUT_HANDLE);
 public:
@@ -93,7 +93,7 @@ public:
 				if (!usuarios->vacio()) {
 					pass=usuarios->FindAccess(user,contra);
 
-					idusuario = usuarios->ObternerId(user);
+					actual = usuarios->ObternerUsuario(user);
 				}
 				else if (usuarios->vacio()) {
 					setXY(x2temp + m2.size() - 13, y2temp + 2);
@@ -133,6 +133,6 @@ public:
 		return usuarios;
 	}
 
-	string getIdSeleccionado() { return idusuario; }
+	User* getUserActual() { return actual; }
 
 };

@@ -30,7 +30,7 @@ class Menu {
 private:
 	Principal pr;
 	int x, y;
-	string idUsuario;
+	User* usuarioActual;
 
 	UserList* userPs;
 	Contactlist<string> contactoList;
@@ -40,7 +40,7 @@ private:
 	CONSOLE_CURSOR_INFO cursorVisible;
 	HANDLE hConsol = GetStdHandle(STD_OUTPUT_HANDLE);
 public:
-	Menu(UserList* user, string id) : userPs(user), idUsuario(id) {
+	Menu(UserList* user, User* ua) : userPs(user), usuarioActual(ua) {
 		this->x = 0;
 		this->y = 0;
 		cursorVisible.bVisible = FALSE;
@@ -114,7 +114,7 @@ public:
 			pr.mostrar(xn, y + 1, hConsol);
 			encuadre1();
 			encuadre2();
-			setXY(2, 9); cout << "Hola, usuario " << userPs->nombreUsuario() << "\n";
+			setXY(2, 9); cout << "Hola, usuario " << usuarioActual->getUser() << "\n";
 			setXY(2, 11); cout << "[1] SubMenu contactos\n";
 			setXY(2, 12); cout << "[2] SubMenu ventas\n";
 			setXY(2, 13); cout << "[3] Ver contactos\n";

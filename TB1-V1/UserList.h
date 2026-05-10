@@ -108,10 +108,11 @@ public:
 		return nullptr;
 	}
 
-	string ObternerId(string n) {
+	User* ObternerUsuario(string n) {
 		Nodo* aux= FindNombre(n);
 
-		return aux->user->getId();
+		if (aux == nullptr) return nullptr;
+		return aux->user;
 	}
 };
 
