@@ -14,7 +14,7 @@ private:
 	int len;
 
 public:
-	UserList(): head(nullptr), len(0) {};
+	UserList() : head(nullptr), len(0) {};
 	~UserList() {
 		Nodo* aux = head;
 		Nodo* aux2;
@@ -55,12 +55,22 @@ public:
 		len++;
 
 	}
-
+	string nombreUsuario() {
+		Nodo* aux = head;
+		while (aux != nullptr) {
+			if (aux->user->getUserPass() != "") {
+				return aux->user->getUserPass();
+			}
+			aux = aux->next;  // ← FALTA ESTO
+		}
+		return "";  // ← FALTA ESTO - Retornar string válido si no encuentra nada
+	}
 	bool FindAccess(string user, string contra) {
 		Nodo* aux = head;
-		
+
 		while (aux != nullptr) {
 			if (aux->user->getUser() == user && aux->user->getPass() == contra) {
+				aux->user->setUserPass(user);
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 52, 20 });
 				std::cout << "Acceso concedido.\n";
 				Sleep(500);
@@ -71,13 +81,11 @@ public:
 				std::cout << "Acceso denegado.\n";
 				Sleep(500);
 				return false;
-				
+
 			}
 			aux = aux->next;
-		
+
 		}
 	}
-
-
 };
 

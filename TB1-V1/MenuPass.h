@@ -92,11 +92,12 @@ public:
 				if (!usuarios->vacio()) {
 					pass=usuarios->FindAccess(user,contra);
 				}
-				else {
+				else if (usuarios.vacio()) {
 					setXY(x2temp + m2.size() - 13, y2temp + 2);
 					cout << "Sin usuarios registrados.\n";
 				}
 				setXY(x2temp + m2.size() - 1, y2temp + 2);
+				system("cls");
 				break;
 			}
 			case 2: {
@@ -124,5 +125,8 @@ public:
 			};
 		}
 
+	}
+	UserList* obtenerUsuarios() {// aquí la IA ayudo para que el menu principal pueda acceder a la lista de usuarios y asi mostrar el nombre del usuario que ingreso
+		return &usuarios;
 	}
 };

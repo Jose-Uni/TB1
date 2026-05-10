@@ -3,6 +3,7 @@
 #include "OpportunityList.h"
 #include "LeadQueue.h"
 #include "MenuPass.h"
+#include "Menu.h"
 
 using namespace std;
 
@@ -15,6 +16,8 @@ int main()  {
 	intro->Animación();
 	MenuPass* menuP = new MenuPass(&ListaUsuarios);
     menuP->mostrarMenu();
+    Menu* menuPrin = new Menu(menuP->obtenerUsuarios());
+    menuPrin->menu();
 	delete intro;
 	delete menuP;
 
@@ -25,7 +28,7 @@ int main()  {
     auto filtrarVIPActivos = [&](Contactlist<string>& lista) {
         Contactlist<string> resultado;
         lista.buscarVipActivo([&](Contact<string>& c) {
-            if (c.getTipo() == Tag::VIP && c.getEstado() == true) {
+            if (c.getTipo() == Tag::VIP) {
                 resultado.pushback(c);
             }
         });

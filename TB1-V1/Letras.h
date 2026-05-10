@@ -63,7 +63,7 @@ struct C {
 			vacio.borrarL(x, y, hConsole);
 			x += dx;
 			mostrar(x, y, hConsole);
-			Sleep(0.5);
+			Sleep(1);
 			if (x <= 32) {
 				dx *= 0;
 				llego = true;
@@ -110,7 +110,7 @@ struct H {
 			vacio.borrarL(x, y, hConsole);
 			x += dx;
 			mostrar(x, y, hConsole);
-			Sleep(0.5);
+			Sleep(1);
 			if (x <= 46) {
 				llego = true;
 				dx *= 0;
@@ -157,7 +157,7 @@ struct E {
 			vacio.borrarL(x, y, hConsole);
 			x += dx;
 			mostrar(x, y, hConsole);
-			Sleep(0.5);
+			Sleep(1);
 			if (x <= 60) {
 				dx *= 0;
 				llego = true;
@@ -203,7 +203,7 @@ struct T {
 			vacio.borrarL(x, y, hConsole);
 			x += dx;
 			mostrar(x, y, hConsole);
-			Sleep(0.5);
+			Sleep(1);
 			if (x <= 74) {
 				dx *= 0;
 				llego = true;
@@ -249,7 +249,7 @@ struct N {
 			vacio.borrarL(x, y, hConsole);
 			x += dx;
 			mostrar(x, y, hConsole);
-			Sleep(0.5);
+			Sleep(1);
 			if (x <= 38) {
 				dx *= 0;
 				llego = true;
@@ -295,7 +295,7 @@ struct E2 {
 			vacio.borrarL(x, y, hConsole);
 			x += dx;
 			mostrar(x, y, hConsole);
-			Sleep(0.5);
+			Sleep(1);
 			if (x <= 52) {
 				dx *= 0;
 				llego = true;
@@ -341,7 +341,7 @@ struct G {
 			vacio.borrarL(x, y, hConsole);
 			x += dx;
 			mostrar(x, y, hConsole);
-			Sleep(0.5);
+			Sleep(1);
 			if (x <= 66) {
 				dx *= 0;
 				llego = true;
