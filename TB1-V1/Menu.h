@@ -35,6 +35,7 @@ private:
 	UserList* userPs;
 	Contactlist<string> contactoList;
 	OpportunityList<string> oportunidadList;
+	LeadQueue<string> colaa;
 	FileManager* archivos;
 
 	CONSOLE_CURSOR_INFO cursorVisible;
