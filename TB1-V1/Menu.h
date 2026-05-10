@@ -1,11 +1,6 @@
 #pragma once
 #include <sstream>
-#include "Contact.h"
-#include "ContactList.h"
-#include "Opportunities.h"
-#include "OpportunityList.h"
-#include "LeadQueue.h"
-#include "UserList.h"
+#include "FileManager.h"
 #include "header.h"
 
 struct Principal {
@@ -30,25 +25,35 @@ struct Principal {
 		}
 	}
 };
+
 class Menu {
 private:
 	Principal pr;
 	int x, y;
+	User* usuarioActual;
+
 	UserList* userPs;
 	Contactlist<string> contactoList;
 	OpportunityList<string> oportunidadList;
-	LeadQueue<string> colaa;
+	FileManager* archivos;
+
 	CONSOLE_CURSOR_INFO cursorVisible;
 	HANDLE hConsol = GetStdHandle(STD_OUTPUT_HANDLE);
 public:
-	Menu(UserList* user) : userPs(user) {
+	Menu(UserList* user, User* ua, FileManager* f) : userPs(user), usuarioActual(ua), archivos(f) {
 		this->x = 0;
 		this->y = 0;
 		cursorVisible.bVisible = FALSE;
 		cursorVisible.dwSize = 1;
 		SetConsoleCursorInfo(hConsol, &cursorVisible);
+		archivos->setContactos(&contactoList);
+		archivos->setOportunidades(&oportunidadList);
+		archivos->LoadContacts();
+		archivos->LoadOpportunities();
 	}
-	~Menu() {};
+	~Menu() {
+	
+	};
 	void setXY(int x, int y) {
 		COORD coord;
 		coord.X = x;
@@ -253,7 +258,7 @@ public:
 			pr.mostrar(xn, y + 1, hConsol);
 			encuadre1();
 			encuadre2();
-			setXY(2, 9); cout << "Hola, usuario " << userPs->nombreUsuario() << "\n";
+			setXY(2, 9); cout << "Hola, usuario " << usuarioActual->getUser() << "\n";
 			setXY(2, 11); cout << "[1] SubMenu contactos\n";
 			setXY(2, 12); cout << "[2] SubMenu ventas\n";
 			setXY(2, 13); cout << "[3] Ver contactos\n";

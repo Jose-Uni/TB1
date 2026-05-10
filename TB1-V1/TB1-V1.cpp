@@ -8,19 +8,20 @@
 using namespace std;
 
 int main()  {
+    UserList ListaUsuarios;
+
+
 	Intro* intro = new Intro();
 	intro->colorBF(0,10);
 	intro->Animación();
-	MenuPass* menuP = new MenuPass();
+	MenuPass* menuP = new MenuPass(&ListaUsuarios);
     menuP->mostrarMenu();
-    Menu* menuPrin = new Menu(menuP->obtenerUsuarios());
+    Menu* menuPrin = new Menu(menuP->obtenerUsuarios(),menuP->getUserActual(),menuP->getArchivos());
     menuPrin->menu();
 	delete intro;
 	delete menuP;
 
-	Contactlist<string> lista;
-	OpportunityList<string> lista2;
-	LeadQueue<string> colaa;
+	
    
     //#Lambda1 filtra a las persona vip que estan activas
 	Contactlist<string> listaContactos;

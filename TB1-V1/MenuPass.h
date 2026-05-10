@@ -3,6 +3,7 @@
 #include "header.h"
 #include "UserList.h"
 #include <sstream>
+#include "FileManager.h"
 
 using namespace std;
 
@@ -28,17 +29,23 @@ struct Welcome {
 		}
 	}
 };
+
 class MenuPass {
 private:
 	int x, y;
 	bool pass = false;
-	UserList usuarios;
+	UserList* usuarios;
+	User* actual=nullptr;
+	FileManager archivos;
 	Welcome w;
 	HANDLE hConsol = GetStdHandle(STD_OUTPUT_HANDLE);
 public:
-	MenuPass() {
+	MenuPass(UserList* lista) {
 		this->x = 34;
 		this->y = 10;
+		usuarios = lista;
+		archivos.setUsuarios(lista);
+		archivos.LoadUsers();
 	};
 	void setXY(int x, int y) {
 		COORD coord;
@@ -87,10 +94,12 @@ public:
 				cin >> user;
 				setXY(x2temp + m2.size() - 1, y2temp + 1);
 				cin >> contra;
-				if (!usuarios.vacio()) {
-					pass=usuarios.FindAccess(user,contra);
+				if (!usuarios->vacio()) {
+					pass=usuarios->FindAccess(user,contra);
+
+					actual = usuarios->ObternerUsuario(user);
 				}
-				else if (usuarios.vacio()) {
+				else if (usuarios->vacio()) {
 					setXY(x2temp + m2.size() - 13, y2temp + 2);
 					cout << "Sin usuarios registrados.\n";
 				}
@@ -114,7 +123,7 @@ public:
 				setXY(x2temp + m2.size() - 1, y2temp + 1);
 				cin >> contra;
 				User newUser(user,contra);
-				usuarios.pushback(newUser);
+				usuarios->pushback(newUser);
 				setXY(x2temp, y2temp + 3);
 				cout << "Usuario registrado.\n";
 				Sleep(500);
@@ -124,7 +133,12 @@ public:
 		}
 
 	}
-	UserList* obtenerUsuarios() {// aquí la IA ayudo para que el menu principal pueda acceder a la lista de usuarios y asi mostrar el nombre del usuario que ingreso
-		return &usuarios;
+	UserList* obtenerUsuarios() {
+		return usuarios;
 	}
+
+	User* getUserActual() { return actual; }
+
+	FileManager* getArchivos() { return &archivos; }
+
 };

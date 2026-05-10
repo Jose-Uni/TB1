@@ -16,6 +16,7 @@ private:
 	
 
 public:
+	Contact() {};
 	Contact(T n, T a, T e,int t, T emp, T c, Tag tag)
 		: nombre(n), apellido(a), email(e), empresa(emp), cargo(c),
 		telefono(t), Tipo(tag) {
@@ -25,6 +26,7 @@ public:
 
 
 	void setId() { id = generateId(); }
+	void setId(T i) { id = i; }
 	void setNombre(T a) { nombre = a; }
 	void setApellido(T a) { apellido = a; }
 	void setEmail(T a) { email = a; }

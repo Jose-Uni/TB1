@@ -4,6 +4,7 @@
 #include <Windows.h>
 #include <functional>
 #include <vector>
+#include <fstream>
 
 template<typename T>
 class OpportunityList
@@ -69,6 +70,22 @@ public:
         }
     }
 
+    void recorrer(ofstream& file) {
+        Nodo* aux = head;
+        while (aux != nullptr) {
+            file << aux->oportunidad->getId() << "\n";
+            file << aux->oportunidad->getTitulo() << "\n";
+            file << static_cast<float>(aux->oportunidad->getValor()) << "\n";
+            file << static_cast<int>(aux->oportunidad->getAvance()) << "\n";
+            file << aux->oportunidad->getFechaI() << "\n";
+            file << aux->oportunidad->getFechaC() << "\n";
+            file << aux->oportunidad->getVendedor() << "\n";
+            file << aux->oportunidad->getContacto() << "\n";
+            file << "---\n";
+            aux = aux->next;
+        }
+    }
+
     Nodo* Indice(int pos) {
         if (pos >= len) {
             return nullptr;
@@ -85,7 +102,7 @@ public:
     void pushback(Opportunity<T> dat) {
         Opportunity<T>* nuevo = new Opportunity<T>(dat);   
         Nodo* neo = new Nodo(*nuevo);
-        if (head == nullptr) head = neo;//#Cambie el nuevo por el neo
+        if (head == nullptr) head = neo;
         else {
             Nodo* aux = Indice(len - 1);
             aux->next = neo;
