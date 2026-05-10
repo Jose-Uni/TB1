@@ -45,25 +45,33 @@ public:
 	}
 	void Animación() {
 		setX(106);
+		son.SonidoArranque();
 		c.animar(this->x,this->y,this->dx, this->hConsol);
 		if (c.getLlego()){
+			son.SonidoArranque();
 			h.animar(this->x,this->y,this->dx, this->hConsol);		
 		}
 		if (h.getLlego()){
+			son.SonidoArranque();
 			e.animar(this->x,this->y,this->dx, this->hConsol);		
 		}
 		if (e.getLlego()){
+			son.SonidoArranque();
 			t.animar(this->x,this->y,this->dx, this->hConsol);		
 		}
 		setY(11);
 		if (t.getLlego()) {
+			son.SonidoArranque();
 			n.animar(this->x,this->y,this->dx, this->hConsol);
 		}
 		if (n.getLlego()) {
+			son.SonidoArranque();
 			e2.animar(this->x,this->y,this->dx, this->hConsol);
 		}
 		if (e2.getLlego()) {
+			son.SonidoArranque();
 			g.animar(this->x,this->y,this->dx, this->hConsol);
+			son.SonidoNotificacion();
 		}if (g.getLlego()) {
 			Pasar();
 		}

@@ -1,13 +1,23 @@
 #pragma once
 #include "header.h"
+#include <Windows.h>
+#include <mmsystem.h>
+#include <string>
 
+using namespace std;
 
-struct Sonidos {
+class Sonidos {
+public:
+	Sonidos() {
+
+	}
+	~Sonidos() {
+	}
 	void SonidoExito() {
 		PlaySound(TEXT("C:\\Windows\\Media\\tada.wav"), NULL, SND_FILENAME | SND_ASYNC);
 	}
 	void SonidoNotificacion() {
-		PlaySound(TEXT("C:\\Windows\\Media\\notify.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		PlaySound(TEXT("sonidos\\soundshelfstudio-ui-mission-complete-chime-527522.wav"), NULL, SND_FILENAME | SND_ASYNC);
 	}
 	void SonidoArranque() {
 		PlaySound(TEXT("C:\\Windows\\Media\\chord.wav"), NULL, SND_FILENAME | SND_ASYNC);
