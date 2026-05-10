@@ -534,7 +534,7 @@ public:
 					system("cls");
 					pr.mostrar(xn, y + 1, hConsol);
 					encuadre1(); encuadre2();
-					setXY(2, 9); cout << "--- Contactos VIPs Activos ---";
+					setXY(2, 9); cout << "=== Contactos VIPs Activos ===";
 
 					
 					auto filtrarVIPActivos = [&](Contactlist<string>& lista) {
@@ -554,13 +554,12 @@ public:
 					}
 					else {
 						int posY = 11;
-						// Iteramos sobre la nueva lista filtrada
 						for (auto it = vipsActivos.begin(); it != vipsActivos.end(); ++it) {
-							setXY(2, posY++); cout << "- " << (*it).getNombre() << " " << (*it).getApellido() << " (Empresa: " << (*it).getEmpresa() << ")";
+							setXY(2, posY++); cout << "- " << (*it).getNombre() << " " << (*it).getApellido();
+							setXY(2,13); cout <<	" ,Empresa: " << (*it).getEmpresa() << " ,Cargo: " << (*it).getCargo();
 						}
 					}
-					setXY(2, 20); cout << "Presione cualquier tecla para regresar...";
-					_getch();
+					setXY(2, 20); cout << "Presione cualquier tecla para regresar...";					
 				} break;
 
 				case 2: { 
@@ -579,7 +578,7 @@ public:
 					system("cls");
 					setXY(2, 9); cout << "Lista de oportunidades ordenada correctamente.";
 					setXY(2, 10); cout << "Iniciando visualizador...";
-					_getch();
+					
 
 					MostrarVemtas();
 				} break;
@@ -590,7 +589,7 @@ public:
 					encuadre1(); encuadre2();
 					setXY(2, 9); cout << "--- Resumen Financiero de Ventas ---";
 
-					
+					// Implementación de Lambda
 					auto totalPorEtapa = [&](OpportunityList<string>& lista, Etapa etapa) {
 						float total = 0.0f;
 						lista.sumEtapa([&](Opportunity<string>& o) {
@@ -615,8 +614,7 @@ public:
 
 					setXY(2, 17); cout << "Total del Pipeline Activo (Negociacion + Propuesta): $" << (enNegociacion + enPropuesta);
 
-					setXY(2, 20); cout << "Presione cualquier tecla para regresar...";
-					_getch();
+					setXY(2, 20); cout << "Presione cualquier tecla para regresar...";					
 				} break;
 
 				} 
