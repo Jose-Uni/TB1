@@ -161,9 +161,6 @@ public:
 			u.setUser(linea);
 
 			getline(file, linea);
-			u.setUserPass(linea);
-
-			getline(file, linea);
 			u.setPass(linea);
 
 			getline(file, linea);

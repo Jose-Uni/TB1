@@ -57,23 +57,11 @@ public:
 
 	}
 
-	string nombreUsuario() {
-		Nodo* aux = head;
-		while (aux != nullptr) {
-			if (aux->user->getUserPass() != "") {
-				return aux->user->getUserPass();
-			}
-			aux = aux->next;  
-		}
-		return ""; 
-	}
-
 	bool FindAccess(string user, string contra) {
 		Nodo* aux = head;
 
 		while (aux != nullptr) {
 			if (aux->user->getUser() == user && aux->user->getPass() == contra) {
-				aux->user->setUserPass(user);
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 52, 20 });
 				std::cout << "Acceso concedido.\n";
 				Sleep(500);
@@ -120,7 +108,6 @@ public:
 		Nodo* aux = head;
 		while (aux != nullptr) {
 			file << aux->user->getUser() << "\n";
-			file << aux->user->getUserPass() << "\n";
 			file << aux->user->getPass() << "\n";
 			file << aux->user->getId() << "\n";
 			file << "---\n";
