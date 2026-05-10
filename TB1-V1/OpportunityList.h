@@ -33,6 +33,16 @@ private:
         }
     }
 
+    Nodo* MaxValor(Nodo* actual, Nodo* maxActual) {
+        if (actual == nullptr) return maxActual;
+
+        if (actual->oportunidad->getValor() > maxActual->oportunidad->getValor()) {
+            maxActual = actual;
+        }
+
+        return MaxValorRec(actual->next, maxActual);
+    }
+
 public:
     OpportunityList() : head(nullptr), len(0) {};
     ~OpportunityList() {
@@ -224,5 +234,13 @@ public:
         }
     }
 
+    Opportunity<T>* GetMaxValor() {
+        if (Vacio()) {
+            std::cout << "La lista esta vacia!\n";
+            return nullptr;
+        }
+        Nodo* resultado = MaxValor(head->next, head);
+        return resultado->oportunidad;
+    }
 
 };
