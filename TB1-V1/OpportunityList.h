@@ -1,5 +1,7 @@
 #pragma once
 #include "Opportunities.h"
+#include <conio.h>
+#include <Windows.h>
 #include <functional>
 #include <vector>
 #include <fstream>
@@ -34,6 +36,16 @@ private:
         }
     }
 
+    Nodo* MaxValor(Nodo* actual, Nodo* maxActual) {
+        if (actual == nullptr) return maxActual;
+
+        if (actual->oportunidad->getValor() > maxActual->oportunidad->getValor()) {
+            maxActual = actual;
+        }
+
+        return MaxValorRec(actual->next, maxActual);
+    }
+
 public:
     OpportunityList() : head(nullptr), len(0) {};
     ~OpportunityList() {
@@ -47,7 +59,9 @@ public:
     bool Vacio() {
         return len == 0;
     }
-    
+	int length() {
+		return len;
+	}
     void sumEtapa(function<void(Opportunity<T>&)> accion) {
         Nodo* aux = head;
         while (aux != nullptr) {
@@ -152,11 +166,17 @@ public:
         len--;
 
     }
-
+   
     Opportunity<T>* GetOportunidad(T id) {
         Nodo* aux = FindID(id);
         if (aux == nullptr) return nullptr;
         return aux->oportunidad;
+    }
+    // este metodo lo hizo la IA pero es para acceder a los nodos por indice y no IDs
+    Opportunity<T>* GetOportunidadPorIndice(int pos) {
+        Nodo* aux = Indice(pos);
+        if (aux != nullptr) return aux->oportunidad;
+        return nullptr;
     }
 
     OpportunityList FiltrarEtapa(Etapa e) {
@@ -241,5 +261,13 @@ public:
         }
     }
 
+    Opportunity<T>* GetMaxValor() {
+        if (Vacio()) {
+            std::cout << "La lista esta vacia!\n";
+            return nullptr;
+        }
+        Nodo* resultado = MaxValor(head->next, head);
+        return resultado->oportunidad;
+    }
 
 };

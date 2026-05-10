@@ -3,6 +3,8 @@
 #include <functional>
 #include "LeadQueue.h"
 #include <fstream>
+#include <conio.h>
+#include <Windows.h>
 
 template <typename T>
 class Contactlist
@@ -66,6 +68,9 @@ public:
 	bool vacio() {
 		return len == 0;
 	}
+	int length() {
+		return len;
+	}
 
 	Nodo* Indice(int pos) {
 		if (pos >= len) {
@@ -118,7 +123,7 @@ public:
 		delete aux;
 
 	}
-
+	
 	Nodo* FindID(T id) {
 		if (vacio()) {
 			std::cout << "La lista esta vacia!\n";

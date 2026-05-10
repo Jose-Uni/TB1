@@ -54,7 +54,7 @@ int main()  {
     listaOportunidades.Orden(porEtapa);
 
 
-    //#Lambda2 para saber cuanto dinera hay en las oportunidades o en la negociacion
+    //#Lambda3 para saber cuanto dinera hay en las oportunidades o en la negociacion
     auto totalPorEtapa = [&](OpportunityList<string>& lista, Etapa etapa) {
         float total = 0.0f;
         lista.sumEtapa([&](Opportunity<string>& o) {
