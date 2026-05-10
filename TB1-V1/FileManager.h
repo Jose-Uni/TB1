@@ -14,18 +14,15 @@ private:
 
 public:
 	FileManager() {};
-	FileManager(Contactlist<string>* c, OpportunityList<string>* o, UserList* u): listaContactos(c),
-	listaOportunidades(o),listaUsuarios(u){
-	
-		LoadContacts();
-		LoadOpportunities();
-		LoadUsers();
-	};
 	~FileManager() {
 		SaveContacts();
 		SaveOpportunities();
 		SaveUsers();
 	};
+
+	void setContactos(Contactlist<string>* c) { listaContactos = c; }
+	void setOportunidades(OpportunityList<string>* o) { listaOportunidades = o; }
+	void setUsuarios(UserList* u) { listaUsuarios = u; }
 
 	void SaveContacts() {
 		ofstream file("contactos.txt");

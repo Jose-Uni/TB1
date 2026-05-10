@@ -16,7 +16,7 @@ int main()  {
 	intro->Animación();
 	MenuPass* menuP = new MenuPass(&ListaUsuarios);
     menuP->mostrarMenu();
-    Menu* menuPrin = new Menu(menuP->obtenerUsuarios(),menuP->getUserActual());
+    Menu* menuPrin = new Menu(menuP->obtenerUsuarios(),menuP->getUserActual(),menuP->getArchivos());
     menuPrin->menu();
 	delete intro;
 	delete menuP;

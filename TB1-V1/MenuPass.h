@@ -3,6 +3,7 @@
 #include "header.h"
 #include "UserList.h"
 #include <sstream>
+#include "FileManager.h"
 
 using namespace std;
 
@@ -35,6 +36,7 @@ private:
 	bool pass = false;
 	UserList* usuarios;
 	User* actual=nullptr;
+	FileManager archivos;
 	Welcome w;
 	HANDLE hConsol = GetStdHandle(STD_OUTPUT_HANDLE);
 public:
@@ -42,6 +44,8 @@ public:
 		this->x = 34;
 		this->y = 10;
 		usuarios = lista;
+		archivos.setUsuarios(lista);
+		archivos.LoadUsers();
 	};
 	void setXY(int x, int y) {
 		COORD coord;
@@ -134,5 +138,7 @@ public:
 	}
 
 	User* getUserActual() { return actual; }
+
+	FileManager* getArchivos() { return &archivos; }
 
 };

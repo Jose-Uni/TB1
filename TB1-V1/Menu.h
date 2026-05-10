@@ -35,18 +35,21 @@ private:
 	UserList* userPs;
 	Contactlist<string> contactoList;
 	OpportunityList<string> oportunidadList;
-	FileManager archivos;
+	FileManager* archivos;
 
 	CONSOLE_CURSOR_INFO cursorVisible;
 	HANDLE hConsol = GetStdHandle(STD_OUTPUT_HANDLE);
 public:
-	Menu(UserList* user, User* ua) : userPs(user), usuarioActual(ua) {
+	Menu(UserList* user, User* ua, FileManager* f) : userPs(user), usuarioActual(ua), archivos(f) {
 		this->x = 0;
 		this->y = 0;
 		cursorVisible.bVisible = FALSE;
 		cursorVisible.dwSize = 1;
 		SetConsoleCursorInfo(hConsol, &cursorVisible);
-		archivos = FileManager(&contactoList, &oportunidadList, userPs);
+		archivos->setContactos(&contactoList);
+		archivos->setOportunidades(&oportunidadList);
+		archivos->LoadContacts();
+		archivos->LoadOpportunities();
 	}
 	~Menu() {
 	
