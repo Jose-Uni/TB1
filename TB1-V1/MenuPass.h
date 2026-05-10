@@ -28,17 +28,19 @@ struct Welcome {
 		}
 	}
 };
+
 class MenuPass {
 private:
 	int x, y;
 	bool pass = false;
-	UserList usuarios;
+	UserList* usuarios;
 	Welcome w;
 	HANDLE hConsol = GetStdHandle(STD_OUTPUT_HANDLE);
 public:
-	MenuPass() {
+	MenuPass(UserList* lista) {
 		this->x = 34;
 		this->y = 10;
+		usuarios = lista;
 	};
 	void setXY(int x, int y) {
 		COORD coord;
@@ -87,8 +89,8 @@ public:
 				cin >> user;
 				setXY(x2temp + m2.size() - 1, y2temp + 1);
 				cin >> contra;
-				if (!usuarios.vacio()) {
-					pass=usuarios.FindAccess(user,contra);
+				if (!usuarios->vacio()) {
+					pass=usuarios->FindAccess(user,contra);
 				}
 				else {
 					setXY(x2temp + m2.size() - 13, y2temp + 2);
@@ -113,7 +115,7 @@ public:
 				setXY(x2temp + m2.size() - 1, y2temp + 1);
 				cin >> contra;
 				User newUser(user,contra);
-				usuarios.pushback(newUser);
+				usuarios->pushback(newUser);
 				setXY(x2temp, y2temp + 3);
 				cout << "Usuario registrado.\n";
 				Sleep(500);

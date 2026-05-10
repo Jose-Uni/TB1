@@ -7,17 +7,18 @@
 using namespace std;
 
 int main()  {
+    UserList ListaUsuarios;
+
+
 	Intro* intro = new Intro();
 	intro->colorBF(0,10);
 	intro->Animación();
-	MenuPass* menuP = new MenuPass();
+	MenuPass* menuP = new MenuPass(&ListaUsuarios);
     menuP->mostrarMenu();
 	delete intro;
 	delete menuP;
 
-	Contactlist<string> lista;
-	OpportunityList<string> lista2;
-	LeadQueue<string> colaa;
+	
    
     //#Lambda1 filtra a las persona vip que estan activas
 	Contactlist<string> listaContactos;
