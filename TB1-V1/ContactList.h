@@ -2,6 +2,7 @@
 #include "Contact.h"
 #include <functional>
 #include "LeadQueue.h"
+#include <fstream>
 #include <conio.h>
 #include <Windows.h>
 

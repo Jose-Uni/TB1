@@ -5,13 +5,13 @@ class User
 {
 private:
 	string username;
-	string usernamePass;
 	string password;
 	string id;
 	static int cant;
 
 public:
-	User(string user, string pass): username(user),usernamePass(""), password(pass) {
+	User() {};
+	User(string user, string pass): username(user), password(pass) {
 		cant++;
 		string idNew = "V"+username.substr(0, 4) + to_string(cant);
 		setId(idNew);
@@ -19,12 +19,10 @@ public:
 	~User() {};
 
 	void setUser(string a) { username = a; }
-	void setUserPass(string a) { usernamePass = a; }
 	void setPass(string a) { password = a; }
 	void setId(string a) { id = a; }
 
 	string getUser() { return username; }
-	string getUserPass() { return usernamePass; }
 	string getPass() { return password; }
 	string getId() { return id; }
 

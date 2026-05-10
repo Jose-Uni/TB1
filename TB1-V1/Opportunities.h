@@ -15,6 +15,7 @@ private:
 	T vendedorAsignado;
 	T contactoId;
 public:
+	Opportunity() {};
 	Opportunity(T ttl, float vlr, Etapa etp, T fi, T fc, T vdAs, T contactoId) :
 		titulo(ttl), valor(vlr), AvanceVenta(etp), fechaInicio(fi),
 		fechaCierre(fc), vendedorAsignado(vdAs), contactoId(contactoId)
@@ -23,6 +24,7 @@ public:
 	};
 	~Opportunity() {};
 
+	void setId(T i){id=i;}
 	void setId() { id = generateId(); }
 	void setTitulo(T i) { titulo = i; }
 	void setFechaI(T i) { fechaInicio = i; }
