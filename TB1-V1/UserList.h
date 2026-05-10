@@ -59,24 +59,17 @@ public:
 
 	bool FindAccess(string user, string contra) {
 		Nodo* aux = head;
-
 		while (aux != nullptr) {
 			if (aux->user->getUser() == user && aux->user->getPass() == contra) {
-				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 52, 20 });
 				std::cout << "Acceso concedido.\n";
 				Sleep(500);
 				return true;
 			}
-			else {
-				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 52, 20 });
-				std::cout << "Acceso denegado.\n";
-				Sleep(500);
-				return false;
-
-			}
 			aux = aux->next;
-
 		}
+		std::cout << "Acceso denegado.\n";
+		Sleep(500);
+		return false;
 	}
 
 	Nodo* FindNombre(string n) {
