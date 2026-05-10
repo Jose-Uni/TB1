@@ -85,7 +85,7 @@ public:
     void pushback(Opportunity<T> dat) {
         Opportunity<T>* nuevo = new Opportunity<T>(dat);   
         Nodo* neo = new Nodo(*nuevo);
-        if (head == nullptr) head = neo;//#Cambie el nuevo por el neo
+        if (head == nullptr) head = neo;
         else {
             Nodo* aux = Indice(len - 1);
             aux->next = neo;
