@@ -564,6 +564,7 @@ public:
 					}
 				}break;
 				case 5: {
+					//cerrar xd es pa un cambio random
 				}break;
 
 				}
