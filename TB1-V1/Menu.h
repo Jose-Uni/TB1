@@ -37,6 +37,7 @@ private:
 	UserList* userPs;
 	Contactlist<string> contactoList;
 	OpportunityList<string> oportunidadList;
+	LeadQueue<string> colaa;
 	CONSOLE_CURSOR_INFO cursorVisible;
 	HANDLE hConsol = GetStdHandle(STD_OUTPUT_HANDLE);
 public:
@@ -390,7 +391,75 @@ public:
 				setXY(12, 16); cin >> opcionV;
 				switch (opcionV) {
 				case 1: {
-					int pendejo2;
+					system("cls");
+					int xn = (120 - 55) / 2;
+					pr.mostrar(xn, y + 1, hConsol);
+					encuadre1(); encuadre2();
+
+					if (colaa.Vacio()) {
+						setXY(2, 9); cout << "No hay leads en la cola. Ve a 'Verificar Leads' primero.";
+						setXY(2, 11); cout << "Presione una tecla...";
+						system("pause");
+						break;
+					}
+					
+					Contact<string> leadExtraido = *(colaa.dequeue());
+
+					setXY(2, 9); cout << "--- Atendiendo Lead ---";
+					setXY(2, 11); cout << "Nombre: " << leadExtraido.getNombre() << " " << leadExtraido.getApellido();
+					setXY(2, 12); cout << "Email: " << leadExtraido.getEmail();
+					setXY(2, 13); cout << "Telefono: " << leadExtraido.getTelefono();
+					setXY(2, 14); cout << "Empresa: " << leadExtraido.getEmpresa();
+					setXY(2, 15); cout << "Cargo: " << leadExtraido.getCargo();
+
+					setXY(2, 17); cout << "Resultado de la llamada:";
+					setXY(2, 18); cout << "[1] Interesado (Crear Oportunidad)";
+					setXY(2, 19); cout << "[2] No contesta (Volver a la cola)";
+					setXY(2, 20); cout << "[3] No interesado (Marcar inactivo)";
+					setXY(2, 21); cout << "Opcion: ";
+					int op; cin >> op;
+
+					Contact<string>* contactoOriginal = contactoList.GetContacto(leadExtraido.getId());
+
+					if (op == 1) {
+						
+						system("cls");
+						pr.mostrar(xn, y + 1, hConsol);
+						encuadre1(); encuadre2();
+
+						setXY(2, 9); cout << "Registrar Nueva Oportunidad para: " << leadExtraido.getNombre();
+
+						string titulo, fechaI, fechaF, vendedor;
+						float valor;
+						int avance;
+
+						setXY(2, 11); cout << "Ingrese el titulo de la venta: "; cin.ignore(); getline(cin, titulo);
+						setXY(2, 12); cout << "Ingrese el monto  ($): "; cin >> valor;
+						setXY(2, 13); cout << "Ingrese la fecha de inicio (dd/mm/aa): "; cin.ignore(); getline(cin, fechaI);
+						setXY(2, 14); cout << "Ingrese la fecha de cierre (dd/mm/aa): "; getline(cin, fechaF);
+						setXY(2, 15); cout << "Ingrese el vendedor: "; cin.ignore(); getline(cin, vendedor);
+						setXY(2, 16); cout << "Ingrese la etapa (0-3): "; cin >> avance;
+
+						Opportunity<string> oportunidad(titulo, valor, static_cast<Etapa>(avance),
+							fechaI, fechaF, vendedor, contactoOriginal->getId());
+						oportunidadList.pushback(oportunidad);
+
+						if (contactoOriginal != nullptr) {
+							contactoOriginal->setTipo(Tag::PROSPECTO);
+						}
+
+						setXY(2, 16); cout << "Oportunidad creada y contacto actualizado a PROSPECTO";
+					}
+					else if (op == 2) {
+						colaa.enqueue(leadExtraido);
+						setXY(2, 17); cout << "Lead devuelto a la cola para llamar mas tarde.";
+					}
+					else if (op == 3) {
+						if (contactoOriginal != nullptr) {
+							contactoOriginal->setTipo(Tag::INACTIVO);
+						}
+						setXY(2, 17); cout << "Lead marcado como INACTIVO.";
+					}
 				}break;
 				case 2: {
 					system("cls");
@@ -489,7 +558,6 @@ public:
 					}
 				}break;
 				case 5: {
-					int pendejo;
 				}break;
 
 				}
@@ -577,9 +645,8 @@ public:
 
 					system("cls");
 					setXY(2, 9); cout << "Lista de oportunidades ordenada correctamente.";
-					setXY(2, 10); cout << "Iniciando visualizador...";
+					setXY(2, 10); cout << "Mostrando ventas en Orden";
 					
-
 					MostrarVemtas();
 				} break;
 
@@ -587,9 +654,9 @@ public:
 					system("cls");
 					pr.mostrar(xn, y + 1, hConsol);
 					encuadre1(); encuadre2();
-					setXY(2, 9); cout << "--- Resumen Financiero de Ventas ---";
+					setXY(2, 9); cout << "=== Resumen Financiero de Ventas ===";
 
-					// Implementación de Lambda
+
 					auto totalPorEtapa = [&](OpportunityList<string>& lista, Etapa etapa) {
 						float total = 0.0f;
 						lista.sumEtapa([&](Opportunity<string>& o) {
@@ -612,12 +679,14 @@ public:
 					setXY(2, 14); cout << "Dinero en Propuestas:      $" << enPropuesta;
 					setXY(2, 15); cout << "Dinero Perdido:            $" << perdidas;
 
-					setXY(2, 17); cout << "Total del Pipeline Activo (Negociacion + Propuesta): $" << (enNegociacion + enPropuesta);
+					setXY(2, 17); cout << "Total de Negociacion + Propuesta: $" << (enNegociacion + enPropuesta);
+					setXY(2, 17); cout << "Total de cierres ganados - perdidas: $" << (ganadas-perdidas);
 
-					setXY(2, 20); cout << "Presione cualquier tecla para regresar...";					
+					setXY(2, 20); cout << "Presione cualquier tecla para regresar..."; system("pause>0");
 				} break;
 
-				} 
+				case 4: break;
+				}
 				
 			}break;
 			case 6: {
@@ -627,6 +696,16 @@ public:
 				pr.mostrar(xn, y + 1, hConsol);
 				encuadre1();
 				encuadre2();
+				setXY(2, 9); cout << "--- Verificacion de Leads ---";
+
+				
+				colaa = contactoList.GetLeads();
+
+				setXY(2, 11); cout << "Cola de leads actualizada con exito a partir de los contactos.";
+				setXY(2, 12); cout << "Cola de tamaño: " << colaa.Size();
+				
+
+				setXY(2, 14); cout << "Presione cualquier tecla para regresar...";
 			}break;
 			case 7:
 				break;

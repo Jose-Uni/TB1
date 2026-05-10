@@ -43,14 +43,21 @@ public:
         len++;
     }
 
-    void dequeue() {
-        if (head == nullptr) return;
-        Nodo* aux = head;
+    Contact<T>* dequeue() {
+        if (head == nullptr) {
+            throw std::runtime_error("Cola vacia");
+        }
+
+        Contact<T>* resultado = head->Lead;
+        Nodo* temp = head;
         head = head->next;
-        if (head == nullptr)
-            tail = nullptr;
-        delete aux;
+
+        if (head == nullptr) tail = nullptr;
+
+        delete temp; // Solo el nodo, no el contacto
         len--;
+
+        return resultado;
     }
 
 
