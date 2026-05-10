@@ -1,11 +1,6 @@
 #pragma once
 #include <sstream>
-#include "Contact.h"
-#include "ContactList.h"
-#include "Opportunities.h"
-#include "OpportunityList.h"
-#include "LeadQueue.h"
-#include "UserList.h"
+#include "FileManager.h"
 #include "header.h"
 
 struct Principal {
@@ -35,10 +30,13 @@ class Menu {
 private:
 	Principal pr;
 	int x, y;
-	UserList* userPs;
 	string idUsuario;
+
+	UserList* userPs;
 	Contactlist<string> contactoList;
 	OpportunityList<string> oportunidadList;
+	FileManager archivos=FileManager(&contactoList, &oportunidadList, userPs);
+
 	CONSOLE_CURSOR_INFO cursorVisible;
 	HANDLE hConsol = GetStdHandle(STD_OUTPUT_HANDLE);
 public:
@@ -49,7 +47,9 @@ public:
 		cursorVisible.dwSize = 1;
 		SetConsoleCursorInfo(hConsol, &cursorVisible);
 	}
-	~Menu() {};
+	~Menu() {
+	
+	};
 	void setXY(int x, int y) {
 		COORD coord;
 		coord.X = x;
