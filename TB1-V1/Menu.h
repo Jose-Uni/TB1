@@ -36,12 +36,13 @@ private:
 	Principal pr;
 	int x, y;
 	UserList* userPs;
+	string idUsuario;
 	Contactlist<string> contactoList;
 	OpportunityList<string> oportunidadList;
 	CONSOLE_CURSOR_INFO cursorVisible;
 	HANDLE hConsol = GetStdHandle(STD_OUTPUT_HANDLE);
 public:
-	Menu(UserList* user) : userPs(user) {
+	Menu(UserList* user, string id) : userPs(user), idUsuario(id) {
 		this->x = 0;
 		this->y = 0;
 		cursorVisible.bVisible = FALSE;

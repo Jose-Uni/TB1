@@ -133,6 +133,6 @@ public:
 		return usuarios;
 	}
 
-	string IdUsuario() { return idusuario; }
+	string getIdSeleccionado() { return idusuario; }
 
 };
