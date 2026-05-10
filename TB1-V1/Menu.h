@@ -482,7 +482,7 @@ public:
 						setXY(2, 11); cout << "Ingrese el titulo: "; cin.ignore(); getline(cin, titulo);
 						setXY(2, 12); cout << "Ingrese el valor: "; cin >> valor;
 						setXY(2, 13); cout << "Ingrese el avance (0 a 3) ";
-						setXY(2, 14); cout << "PROPUESTA,NEGOCIACION,CERRADO_GANADO,CERRADO_PERDIDO"; cin >> avance;
+						setXY(2, 14); cout << "PROPUESTA,NEGOCIACION,CERRADO_GANADO,CERRADO_PERDIDO "; cin >> avance;
 						setXY(2, 15); cout << "Ingrese la fecha de inicio: "; cin.ignore(); getline(cin, fechaI);
 						setXY(2, 16); cout << "Ingrese la fecha de cierre: "; getline(cin, fechaF);
 						setXY(2, 17); cout << "Ingrese el vendedor: "; getline(cin, vendedor);
