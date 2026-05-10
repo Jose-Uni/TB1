@@ -55,16 +55,18 @@ public:
 		len++;
 
 	}
+
 	string nombreUsuario() {
 		Nodo* aux = head;
 		while (aux != nullptr) {
 			if (aux->user->getUserPass() != "") {
 				return aux->user->getUserPass();
 			}
-			aux = aux->next;  // ← FALTA ESTO
+			aux = aux->next;  
 		}
-		return "";  // ← FALTA ESTO - Retornar string válido si no encuentra nada
+		return ""; 
 	}
+
 	bool FindAccess(string user, string contra) {
 		Nodo* aux = head;
 
@@ -86,6 +88,30 @@ public:
 			aux = aux->next;
 
 		}
+	}
+
+	Nodo* FindNombre(string n) {
+		if (vacio()) {
+			std::cout << "La lista esta vacia!\n";
+			return nullptr;
+		}
+
+		Nodo* aux = head;
+		while (aux != nullptr) {
+
+			if (aux->user->getUser() == n) {
+				return aux;
+			}
+			aux = aux->next;
+		}
+		std::cout << "No se encontro el contacto!\n";
+		return nullptr;
+	}
+
+	string ObternerId(string n) {
+		Nodo* aux= FindNombre(n);
+
+		return aux->user->getId();
 	}
 };
 

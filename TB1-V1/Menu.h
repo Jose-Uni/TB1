@@ -30,6 +30,7 @@ struct Principal {
 		}
 	}
 };
+
 class Menu {
 private:
 	Principal pr;

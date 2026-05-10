@@ -34,6 +34,7 @@ private:
 	int x, y;
 	bool pass = false;
 	UserList* usuarios;
+	string idusuario;
 	Welcome w;
 	HANDLE hConsol = GetStdHandle(STD_OUTPUT_HANDLE);
 public:
@@ -91,8 +92,10 @@ public:
 				cin >> contra;
 				if (!usuarios->vacio()) {
 					pass=usuarios->FindAccess(user,contra);
+
+					idusuario = usuarios->ObternerId(user);
 				}
-				else if (usuarios.vacio()) {
+				else if (usuarios->vacio()) {
 					setXY(x2temp + m2.size() - 13, y2temp + 2);
 					cout << "Sin usuarios registrados.\n";
 				}
@@ -126,7 +129,10 @@ public:
 		}
 
 	}
-	UserList* obtenerUsuarios() {// aquí la IA ayudo para que el menu principal pueda acceder a la lista de usuarios y asi mostrar el nombre del usuario que ingreso
-		return &usuarios;
+	UserList* obtenerUsuarios() {
+		return usuarios;
 	}
+
+	string IdUsuario() { return idusuario; }
+
 };
