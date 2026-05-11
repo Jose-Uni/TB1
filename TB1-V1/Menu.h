@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <sstream>
 #include "FileManager.h"
 #include "header.h"
@@ -107,11 +107,12 @@ public:
 			setXY(xn + 28, i);
 			cout << "|";
 		}
+
 	}
 
 	// lo anterior es todo lo visual
 	//funciones de mostrar de ventas y contactos pq en la lista no puedo hacer aparecer el texto principal
-	// y los encuadres, la IA ayudo a adaptarlos a Menu, pq tenía que acceder pero no sabía que metodo usar
+	// y los encuadres, la IA ayudo a adaptarlos a Menu, pq tenÃ­a que acceder pero no sabÃ­a que metodo usar
 
 	void MostrarContactos() {
 		if (contactoList.vacio()) {
@@ -185,7 +186,7 @@ public:
 			"CERRADO_PERDIDO"
 		};
 		while (true) { // aqui la IA se uso para que se pudiera navegar hacia adelante y atras, 
-			// ya que no esta dentro de la lista por errores de inclusión circular
+			// ya que no esta dentro de la lista por errores de inclusiÃ³n circular
 			Opportunity<string>* op = oportunidadList.GetOportunidadPorIndice(i);
 
 			if (op == nullptr) break;
@@ -302,7 +303,7 @@ public:
 					setXY(2, 16); cout << "Ingrese el cargo: "; getline(cin, cargo);
 					setXY(2, 17); cout << "Ingrese el Tipo (de 0 a 6): ";
 					setXY(2, 18); cout << "LEAD,PROSPECTO,CLIENTE,VIP,INACTIVO,FRECUENTE,CORPORATIVO: "; cin >> tag;
-					setXY(2, 19); cout << "Contacto añadido exitosamente!";
+					setXY(2, 19); cout << "Contacto aÃ±adido exitosamente!";
 					Contact<string> contacto(nombre, apellido, email, telefeno, empresa, cargo, static_cast<Tag>(tag));
 					contactoList.pushback(contacto);
 					break;
@@ -507,7 +508,7 @@ public:
 					float valor; int avance;
 					string id;
 					setXY(2, 10); cout << "Ingrese el ID de la venta a editar: ";
-					setXY(2, 11); cout << "ID = 2 1°eras letras de: Titulo,Vendedor asignado,Fecha Inicio y Cierre: "; cin >> id;
+					setXY(2, 11); cout << "ID = 2 1Â°eras letras de: Titulo,Vendedor asignado,Fecha Inicio y Cierre: "; cin >> id;
 					Opportunity<string>* oportunidad = oportunidadList.GetOportunidad(id);
 					if (oportunidad != nullptr) {
 						char rpta;
@@ -553,7 +554,7 @@ public:
 					char rpta;
 					setXY(2, 9); cout << "Cerrar venta";
 					setXY(2, 10); cout << "Ingrese el ID de la venta a cerrar: ";
-					setXY(2, 11); cout << "ID = 2 1°eras letras de: Titulo,Vendedor asignado, Fecha Inicio y Fecha Cierre: "; cin >> id;
+					setXY(2, 11); cout << "ID = 2 1Â°eras letras de: Titulo,Vendedor asignado, Fecha Inicio y Fecha Cierre: "; cin >> id;
 					Opportunity<string>* oportunidad = oportunidadList.GetOportunidad(id);
 					setXY(2, 12); cout << "La venta a cerrar fue ganada o perdida? (G/P): "; cin >> rpta;
 					if (toupper(rpta) == 'G') {
@@ -709,7 +710,7 @@ public:
 				colaa = contactoList.GetLeads();
 
 				setXY(2, 11); cout << "Cola de leads actualizada con exito a partir de los contactos.";
-				setXY(2, 12); cout << "Cola de tamaño: " << colaa.Size();
+				setXY(2, 12); cout << "Cola de tamaÃ±o: " << colaa.Size();
 				
 
 				setXY(2, 14); cout << "Presione cualquier tecla para regresar...";

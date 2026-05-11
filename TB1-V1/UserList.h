@@ -61,12 +61,14 @@ public:
 		Nodo* aux = head;
 		while (aux != nullptr) {
 			if (aux->user->getUser() == user && aux->user->getPass() == contra) {
+				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 52, 19 });
 				std::cout << "Acceso concedido.\n";
 				Sleep(500);
 				return true;
 			}
 			aux = aux->next;
 		}
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 52, 19 });
 		std::cout << "Acceso denegado.\n";
 		Sleep(500);
 		return false;
