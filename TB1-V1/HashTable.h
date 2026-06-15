@@ -21,6 +21,10 @@ private:
 		Table() : head(nullptr) {};
 
 		void pushback(K k, V v) {
+
+			if (head == nullptr) {
+				head = new Node(k, v);
+			}
 			Node* aux = head;
 
 			while (aux->next!=nullptr) {
@@ -49,6 +53,7 @@ private:
 			Node* aux = head;
 			while (aux->next != nullptr) {
 				if (aux->key == k) return aux->value;
+				aux = aux->next;
 			}
 
 			return -1;
@@ -78,25 +83,21 @@ private:
 
 	};
 	static const int gruposHash = 10;
-	Table* table[gruposHash];
+	Table table[gruposHash];
 
 	
 
 public:
 	HashTable() {
-		for (int i = 0; i < gruposHash; i++) {
-			table[i] = nullptr;
-		}
 	};
 	~HashTable() {
 		for (int i = 0; i < gruposHash; i++) {
 			table[i].clear();
 		}
-		delete[] table;
 	};
 
 	bool vacio() {
-		int sum;
+		int sum=0;
 		for (int i = 0; i < gruposHash; i++) {
 			sum += table[i].len;
 		}
@@ -117,15 +118,6 @@ public:
 
 	void insert(K k, V v) {
 		int valorHash = Hash(k);
-		Node* aux = head;
-
-		while (aux->next != nullptr) {
-			if (aux->key == k) {
-				aux->value = v;
-				return;
-			}
-			aux = aux->next;
-		}
 		table[valorHash].pushback(k, v);
 
 
@@ -141,13 +133,7 @@ public:
 	V get(K key) {
 		int ind = Hash(key);
 
-		Node* aux = table[ind];
-
-		while (aux != nullptr) {
-			if (aux->key == key) return aux->value;
-			aux = aux->next;
-		}
-		return nullptr;
+		return table[ind].search(key);
 	}
 
 
