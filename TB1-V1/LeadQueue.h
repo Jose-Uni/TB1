@@ -5,8 +5,8 @@ template<typename T>
 class LeadQueue
 {
 private:
-    class Nodo {
-    public:
+    struct Nodo {
+    
         Contact<T>* Lead;
         Nodo* next;
         Nodo(Contact<T>& cont, Nodo* nex = nullptr) : Lead(&cont), next(nex) {};
