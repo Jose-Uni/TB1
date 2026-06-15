@@ -1,6 +1,5 @@
 #pragma once
 #include "header.h"
-#include "Contact.h"
 
 template<typename K, typename V>
 class HashTable
@@ -79,13 +78,22 @@ private:
 
 	};
 	static const int gruposHash = 10;
-	Node* table[gruposHash];
+	Table* table[gruposHash];
 
 	
 
 public:
-	HashTable() {};
-	~HashTable() {};
+	HashTable() {
+		for (int i = 0; i < gruposHash; i++) {
+			table[i] = nullptr;
+		}
+	};
+	~HashTable() {
+		for (int i = 0; i < gruposHash; i++) {
+			table[i].clear();
+		}
+		delete[] table;
+	};
 
 	bool vacio() {
 		int sum;
@@ -131,7 +139,15 @@ public:
 	}
 
 	V get(K key) {
+		int ind = Hash(key);
 
+		Node* aux = table[ind];
+
+		while (aux != nullptr) {
+			if (aux->key == key) return aux->value;
+			aux = aux->next;
+		}
+		return nullptr;
 	}
 
 
