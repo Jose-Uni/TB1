@@ -41,6 +41,7 @@ private:
 	CONSOLE_CURSOR_INFO cursorVisible;
 	HANDLE hConsol = GetStdHandle(STD_OUTPUT_HANDLE);
 public:
+
 	Menu(UserList* user, User* ua, FileManager* f) : userPs(user), usuarioActual(ua), archivos(f) {
 		this->x = 0;
 		this->y = 0;
@@ -52,15 +53,15 @@ public:
 		archivos->LoadContacts();
 		archivos->LoadOpportunities();
 	}
-	~Menu() {
-	
-	};
+	~Menu() {};
+
 	void setXY(int x, int y) {
 		COORD coord;
 		coord.X = x;
 		coord.Y = y;
 		SetConsoleCursorPosition(hConsol, coord);
 	}
+
 	void menu() {
 		int xn = (120 - 55) / 2;
 		pr.mostrar(xn, y + 1, hConsol);
@@ -70,6 +71,7 @@ public:
 
 
 	}
+
 	void encuadre1() {
 		int xn = 0, yn = 8;
 		for (int i = 1; i < 90; i++) {
@@ -89,6 +91,7 @@ public:
 			cout << "|";
 		}
 	}
+
 	void encuadre2() {
 		int xn = 90, yn = 8;
 		for (int i = 1; i < 28; i++) {
@@ -168,6 +171,7 @@ public:
 		setXY(2, 9); cout << "Has llegado al final de la lista.";
 		setXY(2, 11); system("pause");
 	}
+
 	void MostrarVemtas() {
 		if (oportunidadList.Vacio()) {
 			
@@ -251,6 +255,7 @@ public:
 		setXY(2, 9); cout << "Has llegado al final de la lista.";
 		setXY(2, 11); system("pause");
 	}
+
 	void opciones() {
 		int opcion = 0;
 		do {
@@ -409,14 +414,15 @@ public:
 						break;
 					}
 					
-					Contact<string> leadExtraido = *(colaa.dequeue());
+					Contact<string>* leadExtraido = colaa.dequeue();
+					if (leadExtraido == nullptr) break;
 
 					setXY(2, 9); cout << "--- Atendiendo Lead ---";
-					setXY(2, 11); cout << "Nombre: " << leadExtraido.getNombre() << " " << leadExtraido.getApellido();
-					setXY(2, 12); cout << "Email: " << leadExtraido.getEmail();
-					setXY(2, 13); cout << "Telefono: " << leadExtraido.getTelefono();
-					setXY(2, 14); cout << "Empresa: " << leadExtraido.getEmpresa();
-					setXY(2, 15); cout << "Cargo: " << leadExtraido.getCargo();
+					setXY(2, 11); cout << "Nombre: " << leadExtraido->getNombre() << " " << leadExtraido->getApellido();
+					setXY(2, 12); cout << "Email: " << leadExtraido->getEmail();
+					setXY(2, 13); cout << "Telefono: " << leadExtraido->getTelefono();
+					setXY(2, 14); cout << "Empresa: " << leadExtraido->getEmpresa();
+					setXY(2, 15); cout << "Cargo: " << leadExtraido->getCargo();
 
 					setXY(2, 17); cout << "Resultado de la llamada:";
 					setXY(2, 18); cout << "[1] Interesado (Crear Oportunidad)";
@@ -425,7 +431,7 @@ public:
 					setXY(2, 21); cout << "Opcion: ";
 					int op; cin >> op;
 
-					Contact<string>* contactoOriginal = contactoList.GetContacto(leadExtraido.getId());
+					Contact<string>* contactoOriginal = contactoList.GetContacto(leadExtraido->getId());
 
 					if (op == 1) {
 						
@@ -433,7 +439,7 @@ public:
 						pr.mostrar(xn, y + 1, hConsol);
 						encuadre1(); encuadre2();
 
-						setXY(2, 9); cout << "Registrar Nueva Oportunidad para: " << leadExtraido.getNombre();
+						setXY(2, 9); cout << "Registrar Nueva Oportunidad para: " << leadExtraido->getNombre();
 
 						string titulo, fechaI, fechaF, vendedor;
 						float valor;
@@ -446,18 +452,20 @@ public:
 						setXY(2, 15); cout << "Ingrese el vendedor: "; cin.ignore(); getline(cin, vendedor);
 						setXY(2, 16); cout << "Ingrese la etapa (0-3): "; cin >> avance;
 
-						Opportunity<string> oportunidad(titulo, valor, static_cast<Etapa>(avance),
-							fechaI, fechaF, vendedor, contactoOriginal->getId());
-						oportunidadList.pushback(oportunidad);
-
 						if (contactoOriginal != nullptr) {
 							contactoOriginal->setTipo(Tag::PROSPECTO);
 						}
 
+						Opportunity<string> oportunidad(titulo, valor, static_cast<Etapa>(avance),
+							fechaI, fechaF, vendedor, contactoOriginal->getId());
+						oportunidadList.pushback(oportunidad);
+
+						
+
 						setXY(2, 16); cout << "Oportunidad creada y contacto actualizado a PROSPECTO";
 					}
 					else if (op == 2) {
-						colaa.enqueue(leadExtraido);
+						colaa.enqueue(*leadExtraido);
 						setXY(2, 17); cout << "Lead devuelto a la cola para llamar mas tarde.";
 					}
 					else if (op == 3) {
@@ -712,7 +720,7 @@ public:
 				setXY(2, 12); cout << "Cola de tamaño: " << colaa.Size();
 				
 
-				setXY(2, 14); cout << "Presione cualquier tecla para regresar...";
+				setXY(2, 14); cout << "Presione cualquier tecla para regresar..."; system("pause>0");
 			}break;
 			case 7:
 				break;

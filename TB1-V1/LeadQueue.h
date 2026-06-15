@@ -21,7 +21,6 @@ public:
         while (head != nullptr) {
             Nodo* aux = head;
             head = head->next;
-            delete aux->Lead;   
             delete aux;          
         }
     };
