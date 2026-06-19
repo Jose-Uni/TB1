@@ -1,7 +1,9 @@
 #pragma once
 #include "Contact.h"
-#include <functional>
 #include "LeadQueue.h"
+#include "HashTable.h"
+
+#include <functional>
 #include <fstream>
 #include <conio.h>
 #include <Windows.h>
@@ -19,6 +21,7 @@ private:
 
 	Nodo* head;
 	int len;
+	HashTable tabla;
 
 	Nodo* EncontrarId(Nodo* actual, T id) {
 		if (actual == nullptr) return nullptr;
@@ -99,6 +102,8 @@ public:
 	void pushback(Contact<T> c) {
 		Contact<T>* nuevo = new Contact<T>(c);
 		Nodo* neo = new Nodo(*nuevo);
+
+
 		if (vacio()) head = neo;
 		else {
 			Nodo* aux = Indice(len - 1);
@@ -134,42 +139,6 @@ public:
 		while (aux != nullptr) {
 
 			if (aux->contacto->getId() == id) {
-				return aux;
-			}
-			aux = aux->next;
-		}
-		std::cout << "No se encontro el contacto!\n";
-		return nullptr;
-	}
-
-	Nodo* FindNombre(T n) {
-		if (vacio()) {
-			std::cout << "La lista esta vacia!\n";
-			return nullptr;
-		}
-
-		Nodo* aux = head;
-		while (aux != nullptr) {
-
-			if (aux->contacto->getNombre() == n) {
-				return aux;
-			}
-			aux = aux->next;
-		}
-		std::cout << "No se encontro el contacto!\n";
-		return nullptr;
-	}
-
-	Nodo* FindEmail(T e) {
-		if (vacio()) {
-			std::cout << "La lista esta vacia!\n";
-			return nullptr;
-		}
-
-		Nodo* aux = head;
-		while (aux != nullptr) {
-
-			if (aux->contacto->getEmail() == e) {
 				return aux;
 			}
 			aux = aux->next;

@@ -20,14 +20,15 @@ private:
 		int len = 0;
 		Table() : head(nullptr) {};
 
-		void pushback(K k, V v) {
+		void pushfront(K k, V v) {
 
 			if (head == nullptr) {
 				head = new Node(k, v);
+				return;
 			}
 			Node* aux = head;
 
-			while (aux->next!=nullptr) {
+			while (aux!=nullptr) {
 				if (aux->key == k) {
 					aux->value = v;
 					return;
@@ -51,12 +52,12 @@ private:
 
 		V search(K k) {
 			Node* aux = head;
-			while (aux->next != nullptr) {
+			while (aux!= nullptr) {
 				if (aux->key == k) return aux->value;
 				aux = aux->next;
 			}
 
-			return -1;
+			return to_string(- 1);
 		}
 
 		void eliminate(K k) {
@@ -82,7 +83,7 @@ private:
 		}
 
 	};
-	static const int gruposHash = 10;
+	static const int gruposHash = 13;
 	Table table[gruposHash];
 
 	
@@ -118,7 +119,7 @@ public:
 
 	void insert(K k, V v) {
 		int valorHash = Hash(k);
-		table[valorHash].pushback(k, v);
+		table[valorHash].pushfront(k, v);
 
 
 	}
