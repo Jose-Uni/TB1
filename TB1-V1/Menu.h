@@ -474,6 +474,7 @@ public:
 						}
 						setXY(2, 17); cout << "Lead marcado como INACTIVO.";
 					}
+					delete leadExtraido;
 				}break;
 				case 2: {
 					system("cls");

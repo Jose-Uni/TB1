@@ -17,10 +17,37 @@ private:
 
 public:
 	LeadQueue():head(nullptr),tail(nullptr),len(0) {};
+    LeadQueue(const LeadQueue& o) : head(nullptr), tail(nullptr), len(0) {
+        Nodo* aux = o.head;
+        while (aux != nullptr) {
+            enqueue(*aux->Lead);
+            aux = aux->next;
+        }
+    }
+    LeadQueue& operator=(const LeadQueue& o) {
+        if (this == &o) return *this;
+
+        while (head != nullptr) {
+            Nodo* aux = head;
+            head = head->next;
+            delete aux->Lead;
+            delete aux;
+        }
+        tail = nullptr;
+        len = 0;
+
+        Nodo* aux = o.head;
+        while (aux != nullptr) {
+            enqueue(*aux->Lead);
+            aux = aux->next;
+        }
+        return *this;
+    }
 	~LeadQueue() {
         while (head != nullptr) {
             Nodo* aux = head;
             head = head->next;
+            delete aux->Lead;
             delete aux;          
         }
     };
