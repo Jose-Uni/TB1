@@ -21,7 +21,7 @@ private:
 
 	Nodo* head;
 	int len;
-	HashTable tabla;
+	HashTable<string,string> tabla;
 
 	Nodo* EncontrarId(Nodo* actual, T id) {
 		if (actual == nullptr) return nullptr;
@@ -102,7 +102,7 @@ public:
 	void pushback(Contact<T> c) {
 		Contact<T>* nuevo = new Contact<T>(c);
 		Nodo* neo = new Nodo(*nuevo);
-
+		tabla.insert(nuevo->getNombre(),nuevo->getId());
 
 		if (vacio()) head = neo;
 		else {
@@ -115,6 +115,7 @@ public:
 	void DeleteID(T i) {
 
 		Nodo* aux = FindID(i);
+		tabla.remove(aux->contacto->getNombre());
 
 		if (aux == nullptr) return;
 
@@ -153,6 +154,10 @@ public:
 		if (aux == nullptr) return nullptr;
 
 		return aux->contacto;
+	}
+
+	string nombreAid(T n) {
+		return tabla.get(T);
 	}
 
 	Contactlist FiltrarEmpresa(T e) {

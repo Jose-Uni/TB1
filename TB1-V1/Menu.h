@@ -321,10 +321,11 @@ public:
 					setXY(2, 9); cout << "Editar Contactos";
 					string nombre, apellido, email, empresa, cargo;
 					int telefeno, tag;
-					string id;
-					setXY(2, 10); cout << "Ingrese el ID del contacto a editar: ";
-					setXY(2, 11); cout << "ID = 2 1eras letras de: Nombre, Apelldio, Empresa y Cargo: "; cin >> id;
-					Contact<string>* contacto = contactoList.GetContacto(id);
+					string nombre;
+					setXY(2, 10); cout << "Ingrese el nombre del contacto a editar: "; cin >> nombre;
+					contactoList.
+					
+					Contact<string>* contacto = contactoList.GetContacto(nombre);
 					if (contacto != nullptr) {
 						char rpta;
 						setXY(2, 12); cout << "Modificar el nombre ? "; cin >> rpta;
