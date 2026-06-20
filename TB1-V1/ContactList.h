@@ -102,7 +102,7 @@ public:
 	void pushback(Contact<T> c) {
 		Contact<T>* nuevo = new Contact<T>(c);
 		Nodo* neo = new Nodo(*nuevo);
-		tabla.insert(nuevo->getNombre(),nuevo->getId());
+		tabla.insert(tolower(nuevo->getNombre()), nuevo->getId());
 
 		if (vacio()) head = neo;
 		else {
@@ -156,8 +156,10 @@ public:
 		return aux->contacto;
 	}
 
-	string nombreAid(T n) {
-		return tabla.get(T);
+	string nombreAid(string n) {
+
+		int i = tolower(n);
+		return tabla.get(i);
 	}
 
 	Contactlist FiltrarEmpresa(T e) {

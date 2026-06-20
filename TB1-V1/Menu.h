@@ -321,11 +321,10 @@ public:
 					setXY(2, 9); cout << "Editar Contactos";
 					string nombre, apellido, email, empresa, cargo;
 					int telefeno, tag;
-					string nombre;
 					setXY(2, 10); cout << "Ingrese el nombre del contacto a editar: "; cin >> nombre;
-					contactoList.
+					string id = contactoList.nombreAid(nombre);
 					
-					Contact<string>* contacto = contactoList.GetContacto(nombre);
+					Contact<string>* contacto = contactoList.GetContacto(id);
 					if (contacto != nullptr) {
 						char rpta;
 						setXY(2, 12); cout << "Modificar el nombre ? "; cin >> rpta;
@@ -372,10 +371,10 @@ public:
 					pr.mostrar(xn, y + 1, hConsol);
 					encuadre1();
 					encuadre2();
-					string id;
+					string nombre;
 					setXY(2, 9); cout << "Eliminar Contactos";
-					setXY(2, 10); cout << "Ingrese el ID del contacto a eliminar: ";
-					setXY(2, 11); cout << "ID = 2 1eras letras de: Nombre, Apelldio, Empresa y Cargo: "; cin >> id;
+					setXY(2, 10); cout << "Ingrese el nombre del contacto a eliminar: ";cin >> nombre;
+					string id = contactoList.nombreAid(nombre);
 					Contact<string>* contacto = contactoList.GetContacto(id);
 					contacto->setTipo(Tag::INACTIVO);
 					break;
@@ -484,7 +483,8 @@ public:
 					encuadre1();
 					encuadre2();
 					setXY(2, 9); cout << "Agregar nueva venta";
-					setXY(2, 10); cout << "Ingrese el Id del contacto: "; string id; cin >> id;
+					setXY(2, 10); cout << "Ingrese el nombre del contacto: "; string nombre; cin >> nombre;
+					string id = contactoList.nombreAid(nombre);
 					Contact <string>* contacto = contactoList.GetContacto(id);
 					if (contacto != nullptr) {
 						string titulo, fechaI, fechaF, vendedor;
