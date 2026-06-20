@@ -102,7 +102,7 @@ public:
 	void pushback(Contact<T> c) {
 		Contact<T>* nuevo = new Contact<T>(c);
 		Nodo* neo = new Nodo(*nuevo);
-		tabla.insert(tolower(nuevo->getNombre()), nuevo->getId());
+		tabla.insert(ToLower(nuevo->getNombre()), nuevo->getId());
 
 		if (vacio()) head = neo;
 		else {
@@ -115,9 +115,9 @@ public:
 	void DeleteID(T i) {
 
 		Nodo* aux = FindID(i);
-		tabla.remove(aux->contacto->getNombre());
 
 		if (aux == nullptr) return;
+		tabla.remove(aux->contacto->getNombre());
 
 		if (aux == head) head = aux->next;
 		else {
@@ -158,8 +158,8 @@ public:
 
 	string nombreAid(string n) {
 
-		string i = tolower(n);
-		return tabla.get(i);
+		string q = ToLower(n);
+		return tabla.get(q);
 	}
 
 	Contactlist FiltrarEmpresa(T e) {
@@ -224,6 +224,11 @@ public:
 			return nullptr;
 		}
 		return EncontrarId(head, id);
+	}
+
+	string ToLower(string s) {
+		for (char& c : s) c = tolower(c);
+		return s;
 	}
 };
 
