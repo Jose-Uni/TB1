@@ -158,7 +158,7 @@ public:
 
 	string nombreAid(string n) {
 
-		int i = tolower(n);
+		string i = tolower(n);
 		return tabla.get(i);
 	}
 
