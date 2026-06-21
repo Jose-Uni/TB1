@@ -502,7 +502,7 @@ public:
 
 					}
 					else {
-						setXY(2, 11); cout << "No existe contacto con ese ID";
+						setXY(2, 11); cout << "No existe contacto con ese nombre";
 					}
 					
 				}break;
