@@ -152,8 +152,6 @@ public:
 			setXY(2, 16); cout << "Empresa:  " << (*it).getEmpresa();
 			setXY(2, 17); cout << "Cargo:    " << (*it).getCargo();
 			setXY(2, 18); cout << "Tipo:    " << tipoTexto[indice];
-
-			
 			
 			cont++;
 
@@ -376,7 +374,13 @@ public:
 					setXY(2, 10); cout << "Ingrese el nombre del contacto a eliminar: ";cin >> nombre;
 					string id = contactoList.nombreAid(nombre);
 					Contact<string>* contacto = contactoList.GetContacto(id);
-					contacto->setTipo(Tag::INACTIVO);
+					if (contacto != nullptr) {
+						contacto->setTipo(Tag::INACTIVO);
+					}
+					else
+					{
+						setXY(2, 10); cout << "Contacto no encontrado!\n"; //nose si esta bien encuadrado ya tu lo ves xdd
+					}
 					break;
 				}
 				case 4: {
@@ -454,15 +458,18 @@ public:
 
 						if (contactoOriginal != nullptr) {
 							contactoOriginal->setTipo(Tag::PROSPECTO);
+
+							Opportunity<string> oportunidad(titulo, valor, static_cast<Etapa>(avance),
+								fechaI, fechaF, vendedor, contactoOriginal->getId());
+							oportunidadList.pushback(oportunidad);
+
+							setXY(2, 16); cout << "Oportunidad creada y contacto actualizado a PROSPECTO";
+
 						}
-
-						Opportunity<string> oportunidad(titulo, valor, static_cast<Etapa>(avance),
-							fechaI, fechaF, vendedor, contactoOriginal->getId());
-						oportunidadList.pushback(oportunidad);
-
+						else {
+							setXY(2, 10); cout << "Contacto no encontrado!\n"; //nose si esta bien encuadrado ya tu lo ves xdd
+						}
 						
-
-						setXY(2, 16); cout << "Oportunidad creada y contacto actualizado a PROSPECTO";
 					}
 					else if (op == 2) {
 						colaa.enqueue(*leadExtraido);
@@ -565,12 +572,17 @@ public:
 					setXY(2, 10); cout << "Ingrese el ID de la venta a cerrar: ";
 					setXY(2, 11); cout << "ID = 2 1°eras letras de: Titulo,Vendedor asignado, Fecha Inicio y Fecha Cierre: "; cin >> id;
 					Opportunity<string>* oportunidad = oportunidadList.GetOportunidad(id);
-					setXY(2, 12); cout << "La venta a cerrar fue ganada o perdida? (G/P): "; cin >> rpta;
-					if (toupper(rpta) == 'G') {
-						oportunidad->setAvance(Etapa::CERRADO_GANADO);
+					if (oportunidad != nullptr) {
+						setXY(2, 12); cout << "La venta a cerrar fue ganada o perdida? (G/P): "; cin >> rpta;
+						if (toupper(rpta) == 'G') {
+							oportunidad->setAvance(Etapa::CERRADO_GANADO);
+						}
+						else if (toupper(rpta) == 'P') {
+							oportunidad->setAvance(Etapa::CERRADO_PERDIDO);
+						}
 					}
-					else if (toupper(rpta) == 'P') {
-						oportunidad->setAvance(Etapa::CERRADO_PERDIDO);
+					else {
+						setXY(2, 10); cout << "Contacto no encontrado!\n"; //no se si esta bien encuadrado 
 					}
 				}break;
 				case 5: {

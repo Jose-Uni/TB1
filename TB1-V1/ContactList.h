@@ -31,6 +31,34 @@ private:
 
 public:
 	Contactlist() : head(nullptr), len(0) {};
+	Contactlist(const Contactlist& o) : head(nullptr), len(0) {
+		Nodo* aux = o.head;
+		while (aux != nullptr) {
+			pushback(*aux->contacto);
+			aux = aux->next;
+		}
+	}
+	Contactlist& operator=(const Contactlist& o) {
+		if (this == &o) return *this;
+
+		Nodo* aux = head;
+		while (aux != nullptr) {
+			Nodo* sig = aux->next;
+			delete aux->contacto;
+			delete aux;
+			aux = sig;
+		}
+		head = nullptr;
+		len = 0;
+		tabla = o.tabla;
+
+		aux = o.head;
+		while (aux != nullptr) {
+			pushback(*aux->contacto);
+			aux = aux->next;
+		}
+		return *this;
+	}
 	~Contactlist() {
 		Nodo* aux = head;
 		Nodo* aux2;
