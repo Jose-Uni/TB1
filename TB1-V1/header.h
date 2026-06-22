@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <Windows.h>
 #include <conio.h>
+#include <string>
 #include "Letras.h"
 
 

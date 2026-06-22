@@ -1,7 +1,9 @@
 #pragma once
 #include "Contact.h"
-#include <functional>
 #include "LeadQueue.h"
+#include "HashTable.h"
+
+#include <functional>
 #include <fstream>
 #include <conio.h>
 #include <Windows.h>
@@ -19,6 +21,7 @@ private:
 
 	Nodo* head;
 	int len;
+	HashTable<string,string> tabla;
 
 	Nodo* EncontrarId(Nodo* actual, T id) {
 		if (actual == nullptr) return nullptr;
@@ -28,6 +31,34 @@ private:
 
 public:
 	Contactlist() : head(nullptr), len(0) {};
+	Contactlist(const Contactlist& o) : head(nullptr), len(0) {
+		Nodo* aux = o.head;
+		while (aux != nullptr) {
+			pushback(*aux->contacto);
+			aux = aux->next;
+		}
+	}
+	Contactlist& operator=(const Contactlist& o) {
+		if (this == &o) return *this;
+
+		Nodo* aux = head;
+		while (aux != nullptr) {
+			Nodo* sig = aux->next;
+			delete aux->contacto;
+			delete aux;
+			aux = sig;
+		}
+		head = nullptr;
+		len = 0;
+		tabla = o.tabla;
+
+		aux = o.head;
+		while (aux != nullptr) {
+			pushback(*aux->contacto);
+			aux = aux->next;
+		}
+		return *this;
+	}
 	~Contactlist() {
 		Nodo* aux = head;
 		Nodo* aux2;
@@ -99,6 +130,8 @@ public:
 	void pushback(Contact<T> c) {
 		Contact<T>* nuevo = new Contact<T>(c);
 		Nodo* neo = new Nodo(*nuevo);
+		tabla.insert(ToLower(nuevo->getNombre()), nuevo->getId());
+
 		if (vacio()) head = neo;
 		else {
 			Nodo* aux = Indice(len - 1);
@@ -112,6 +145,7 @@ public:
 		Nodo* aux = FindID(i);
 
 		if (aux == nullptr) return;
+		tabla.remove(aux->contacto->getNombre());
 
 		if (aux == head) head = aux->next;
 		else {
@@ -142,48 +176,18 @@ public:
 		return nullptr;
 	}
 
-	Nodo* FindNombre(T n) {
-		if (vacio()) {
-			std::cout << "La lista esta vacia!\n";
-			return nullptr;
-		}
-
-		Nodo* aux = head;
-		while (aux != nullptr) {
-
-			if (aux->contacto->getNombre() == n) {
-				return aux;
-			}
-			aux = aux->next;
-		}
-		std::cout << "No se encontro el contacto!\n";
-		return nullptr;
-	}
-
-	Nodo* FindEmail(T e) {
-		if (vacio()) {
-			std::cout << "La lista esta vacia!\n";
-			return nullptr;
-		}
-
-		Nodo* aux = head;
-		while (aux != nullptr) {
-
-			if (aux->contacto->getEmail() == e) {
-				return aux;
-			}
-			aux = aux->next;
-		}
-		std::cout << "No se encontro el contacto!\n";
-		return nullptr;
-	}
-
 	Contact<T>* GetContacto(T id) {
 		Nodo* aux = FindID(id);
 
 		if (aux == nullptr) return nullptr;
 
 		return aux->contacto;
+	}
+
+	string nombreAid(string n) {
+
+		string q = ToLower(n);
+		return tabla.get(q);
 	}
 
 	Contactlist FiltrarEmpresa(T e) {
@@ -248,6 +252,11 @@ public:
 			return nullptr;
 		}
 		return EncontrarId(head, id);
+	}
+
+	string ToLower(string s) {
+		for (char& c : s) c = tolower(c);
+		return s;
 	}
 };
 

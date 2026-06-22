@@ -41,6 +41,7 @@ private:
 	CONSOLE_CURSOR_INFO cursorVisible;
 	HANDLE hConsol = GetStdHandle(STD_OUTPUT_HANDLE);
 public:
+
 	Menu(UserList* user, User* ua, FileManager* f) : userPs(user), usuarioActual(ua), archivos(f) {
 		this->x = 0;
 		this->y = 0;
@@ -52,15 +53,15 @@ public:
 		archivos->LoadContacts();
 		archivos->LoadOpportunities();
 	}
-	~Menu() {
-	
-	};
+	~Menu() {};
+
 	void setXY(int x, int y) {
 		COORD coord;
 		coord.X = x;
 		coord.Y = y;
 		SetConsoleCursorPosition(hConsol, coord);
 	}
+
 	void menu() {
 		int xn = (120 - 55) / 2;
 		pr.mostrar(xn, y + 1, hConsol);
@@ -70,6 +71,7 @@ public:
 
 
 	}
+
 	void encuadre1() {
 		int xn = 0, yn = 8;
 		for (int i = 1; i < 90; i++) {
@@ -89,6 +91,7 @@ public:
 			cout << "|";
 		}
 	}
+
 	void encuadre2() {
 		int xn = 90, yn = 8;
 		for (int i = 1; i < 28; i++) {
@@ -150,8 +153,6 @@ public:
 			setXY(2, 16); cout << "Empresa:  " << (*it).getEmpresa();
 			setXY(2, 17); cout << "Cargo:    " << (*it).getCargo();
 			setXY(2, 18); cout << "Tipo:    " << tipoTexto[indice];
-
-			
 			
 			cont++;
 
@@ -169,6 +170,7 @@ public:
 		setXY(2, 9); cout << "Has llegado al final de la lista.";
 		setXY(2, 11); system("pause");
 	}
+
 	void MostrarVemtas() {
 		if (oportunidadList.Vacio()) {
 			
@@ -252,6 +254,7 @@ public:
 		setXY(2, 9); cout << "Has llegado al final de la lista.";
 		setXY(2, 11); system("pause");
 	}
+
 	void opciones() {
 		int opcion = 0;
 		do {
@@ -317,9 +320,9 @@ public:
 					setXY(2, 9); cout << "Editar Contactos";
 					string nombre, apellido, email, empresa, cargo;
 					int telefeno, tag;
-					string id;
-					setXY(2, 10); cout << "Ingrese el ID del contacto a editar: ";
-					setXY(2, 11); cout << "ID = 2 1eras letras de: Nombre, Apelldio, Empresa y Cargo: "; cin >> id;
+					setXY(2, 10); cout << "Ingrese el nombre del contacto a editar: "; cin >> nombre;
+					string id = contactoList.nombreAid(nombre);
+					
 					Contact<string>* contacto = contactoList.GetContacto(id);
 					if (contacto != nullptr) {
 						char rpta;
@@ -367,12 +370,18 @@ public:
 					pr.mostrar(xn, y + 1, hConsol);
 					encuadre1();
 					encuadre2();
-					string id;
+					string nombre;
 					setXY(2, 9); cout << "Eliminar Contactos";
-					setXY(2, 10); cout << "Ingrese el ID del contacto a eliminar: ";
-					setXY(2, 11); cout << "ID = 2 1eras letras de: Nombre, Apelldio, Empresa y Cargo: "; cin >> id;
+					setXY(2, 10); cout << "Ingrese el nombre del contacto a eliminar: ";cin >> nombre;
+					string id = contactoList.nombreAid(nombre);
 					Contact<string>* contacto = contactoList.GetContacto(id);
-					contacto->setTipo(Tag::INACTIVO);
+					if (contacto != nullptr) {
+						contacto->setTipo(Tag::INACTIVO);
+					}
+					else
+					{
+						setXY(2, 10); cout << "Contacto no encontrado!\n"; //nose si esta bien encuadrado ya tu lo ves xdd
+					}
 					break;
 				}
 				case 4: {
@@ -410,14 +419,15 @@ public:
 						break;
 					}
 					
-					Contact<string> leadExtraido = *(colaa.dequeue());
+					Contact<string>* leadExtraido = colaa.dequeue();
+					if (leadExtraido == nullptr) break;
 
 					setXY(2, 9); cout << "--- Atendiendo Lead ---";
-					setXY(2, 11); cout << "Nombre: " << leadExtraido.getNombre() << " " << leadExtraido.getApellido();
-					setXY(2, 12); cout << "Email: " << leadExtraido.getEmail();
-					setXY(2, 13); cout << "Telefono: " << leadExtraido.getTelefono();
-					setXY(2, 14); cout << "Empresa: " << leadExtraido.getEmpresa();
-					setXY(2, 15); cout << "Cargo: " << leadExtraido.getCargo();
+					setXY(2, 11); cout << "Nombre: " << leadExtraido->getNombre() << " " << leadExtraido->getApellido();
+					setXY(2, 12); cout << "Email: " << leadExtraido->getEmail();
+					setXY(2, 13); cout << "Telefono: " << leadExtraido->getTelefono();
+					setXY(2, 14); cout << "Empresa: " << leadExtraido->getEmpresa();
+					setXY(2, 15); cout << "Cargo: " << leadExtraido->getCargo();
 
 					setXY(2, 17); cout << "Resultado de la llamada:";
 					setXY(2, 18); cout << "[1] Interesado (Crear Oportunidad)";
@@ -426,7 +436,7 @@ public:
 					setXY(2, 21); cout << "Opcion: ";
 					int op; cin >> op;
 
-					Contact<string>* contactoOriginal = contactoList.GetContacto(leadExtraido.getId());
+					Contact<string>* contactoOriginal = contactoList.GetContacto(leadExtraido->getId());
 
 					if (op == 1) {
 						
@@ -434,7 +444,7 @@ public:
 						pr.mostrar(xn, y + 1, hConsol);
 						encuadre1(); encuadre2();
 
-						setXY(2, 9); cout << "Registrar Nueva Oportunidad para: " << leadExtraido.getNombre();
+						setXY(2, 9); cout << "Registrar Nueva Oportunidad para: " << leadExtraido->getNombre();
 
 						string titulo, fechaI, fechaF, vendedor;
 						float valor;
@@ -447,18 +457,23 @@ public:
 						setXY(2, 15); cout << "Ingrese el vendedor: "; cin.ignore(); getline(cin, vendedor);
 						setXY(2, 16); cout << "Ingrese la etapa (0-3): "; cin >> avance;
 
-						Opportunity<string> oportunidad(titulo, valor, static_cast<Etapa>(avance),
-							fechaI, fechaF, vendedor, contactoOriginal->getId());
-						oportunidadList.pushback(oportunidad);
-
 						if (contactoOriginal != nullptr) {
 							contactoOriginal->setTipo(Tag::PROSPECTO);
-						}
 
-						setXY(2, 16); cout << "Oportunidad creada y contacto actualizado a PROSPECTO";
+							Opportunity<string> oportunidad(titulo, valor, static_cast<Etapa>(avance),
+								fechaI, fechaF, vendedor, contactoOriginal->getId());
+							oportunidadList.pushback(oportunidad);
+
+							setXY(2, 16); cout << "Oportunidad creada y contacto actualizado a PROSPECTO";
+
+						}
+						else {
+							setXY(2, 10); cout << "Contacto no encontrado!\n"; //nose si esta bien encuadrado ya tu lo ves xdd
+						}
+						
 					}
 					else if (op == 2) {
-						colaa.enqueue(leadExtraido);
+						colaa.enqueue(*leadExtraido);
 						setXY(2, 17); cout << "Lead devuelto a la cola para llamar mas tarde.";
 					}
 					else if (op == 3) {
@@ -467,6 +482,7 @@ public:
 						}
 						setXY(2, 17); cout << "Lead marcado como INACTIVO.";
 					}
+					delete leadExtraido;
 				}break;
 				case 2: {
 					system("cls");
@@ -475,7 +491,8 @@ public:
 					encuadre1();
 					encuadre2();
 					setXY(2, 9); cout << "Agregar nueva venta";
-					setXY(2, 10); cout << "Ingrese el Id del contacto: "; string id; cin >> id;
+					setXY(2, 10); cout << "Ingrese el nombre del contacto: "; string nombre; cin >> nombre;
+					string id = contactoList.nombreAid(nombre);
 					Contact <string>* contacto = contactoList.GetContacto(id);
 					if (contacto != nullptr) {
 						string titulo, fechaI, fechaF, vendedor;
@@ -493,7 +510,7 @@ public:
 
 					}
 					else {
-						setXY(2, 11); cout << "No existe contacto con ese ID";
+						setXY(2, 11); cout << "No existe contacto con ese nombre";
 					}
 					
 				}break;
@@ -556,12 +573,17 @@ public:
 					setXY(2, 10); cout << "Ingrese el ID de la venta a cerrar: ";
 					setXY(2, 11); cout << "ID = 2 1°eras letras de: Titulo,Vendedor asignado, Fecha Inicio y Fecha Cierre: "; cin >> id;
 					Opportunity<string>* oportunidad = oportunidadList.GetOportunidad(id);
-					setXY(2, 12); cout << "La venta a cerrar fue ganada o perdida? (G/P): "; cin >> rpta;
-					if (toupper(rpta) == 'G') {
-						oportunidad->setAvance(Etapa::CERRADO_GANADO);
+					if (oportunidad != nullptr) {
+						setXY(2, 12); cout << "La venta a cerrar fue ganada o perdida? (G/P): "; cin >> rpta;
+						if (toupper(rpta) == 'G') {
+							oportunidad->setAvance(Etapa::CERRADO_GANADO);
+						}
+						else if (toupper(rpta) == 'P') {
+							oportunidad->setAvance(Etapa::CERRADO_PERDIDO);
+						}
 					}
-					else if (toupper(rpta) == 'P') {
-						oportunidad->setAvance(Etapa::CERRADO_PERDIDO);
+					else {
+						setXY(2, 10); cout << "Contacto no encontrado!\n"; //no se si esta bien encuadrado 
 					}
 				}break;
 				case 5: {
@@ -713,7 +735,7 @@ public:
 				setXY(2, 12); cout << "Cola de tamaño: " << colaa.Size();
 				
 
-				setXY(2, 14); cout << "Presione cualquier tecla para regresar...";
+				setXY(2, 14); cout << "Presione cualquier tecla para regresar..."; system("pause>0");
 			}break;
 			case 7:
 				break;
