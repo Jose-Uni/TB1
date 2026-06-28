@@ -36,7 +36,7 @@ private:
         }
     }
 
-    Nodo* MaxValor(Nodo* actual, Nodo* maxActual) {
+    Nodo* MaxValorRec(Nodo* actual, Nodo* maxActual) {
         if (actual == nullptr) return maxActual;
 
         if (actual->oportunidad->getValor() > maxActual->oportunidad->getValor()) {
@@ -44,6 +44,12 @@ private:
         }
 
         return MaxValorRec(actual->next, maxActual);
+    }
+
+    int ContarPorEtapaRec(Nodo* actual, Etapa etapa) {
+        if (actual == nullptr) return 0;
+        int cuenta = (actual->oportunidad->getAvance() == etapa) ? 1 : 0;
+        return cuenta + ContarPorEtapaRec(actual->next, etapa);
     }
 
 public:
@@ -55,6 +61,11 @@ public:
             delete aux;
         }
     };
+
+    int CantidadPorEtapaRec(Etapa etapa) {
+        if (Vacio()) return 0;
+        return ContarPorEtapa(head, etapa);
+    }
 
     bool Vacio() {
         return len == 0;

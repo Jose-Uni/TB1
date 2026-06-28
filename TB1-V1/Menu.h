@@ -645,6 +645,12 @@ public:
 						return resultado;
 						};
 
+					auto contactoATexto = [](Contact<string>& c) -> string {
+						return c.getNombre() + " " + c.getApellido() +
+							" | Empresa: " + c.getEmpresa() +
+							" | Email: " + c.getEmail();
+						};
+
 					Contactlist<string> vipsActivos = filtrarVIPActivos(contactoList);
 
 					if (vipsActivos.vacio()) {
@@ -653,7 +659,7 @@ public:
 					else {
 						int posY = 11;
 						for (auto it = vipsActivos.begin(); it != vipsActivos.end(); ++it) {
-							setXY(2, posY++); cout << "- " << (*it).getNombre() << " " << (*it).getApellido();
+							setXY(2, posY++); cout << "- " << contactoATexto(c);
 							setXY(2,13); cout <<	" ,Empresa: " << (*it).getEmpresa() << " ,Cargo: " << (*it).getCargo();
 						}
 					}
@@ -669,7 +675,18 @@ public:
 						return static_cast<int>(a.getAvance()) < static_cast<int>(b.getAvance());
 						};
 
-					
+
+					auto esValida = [](Opportunity<string>& o) -> bool {
+						return o.getValor() > 0.0f &&
+							o.getAvance() != Etapa::CERRADO_PERDIDO;
+						};
+
+					oportunidadList.sumEtapa([&](Opportunity<string>& o) {
+						if (!esValida(o)) {
+							setXY(2, 20); cout << "Advertencia: '" << o.getTitulo() << "' sin valor valido.";
+						}
+						});
+
 					oportunidadList.Orden(porValor);
 					oportunidadList.Orden(porEtapa);
 
@@ -703,16 +720,32 @@ public:
 					float perdidas = totalPorEtapa(oportunidadList, Etapa::CERRADO_PERDIDO);
 					float enPropuesta = totalPorEtapa(oportunidadList, Etapa::PROPUESTA);
 
+					auto filtrarPorVendedor = [&](OpportunityList<string>& lista, string vendedor) {
+						float totalVendedor = 0.0f;
+						lista.sumEtapa([&](Opportunity<string>& o) {
+							if (o.getVendedor() == vendedor) {
+								totalVendedor += o.getValor();
+							}
+							});
+						return totalVendedor;
+						};
+
+					string vendedorBuscar;
 					
 					setXY(2, 12); cout << "Dinero en Cierres Ganados: $" << ganadas;
 					setXY(2, 13); cout << "Dinero en Negociacion:     $" << enNegociacion;
 					setXY(2, 14); cout << "Dinero en Propuestas:      $" << enPropuesta;
 					setXY(2, 15); cout << "Dinero Perdido:            $" << perdidas;
 
-					setXY(2, 17); cout << "Total de Negociacion + Propuesta: $" << (enNegociacion + enPropuesta);
+					setXY(2, 16); cout << "Total de Negociacion + Propuesta: $" << (enNegociacion + enPropuesta);
 					setXY(2, 17); cout << "Total de cierres ganados - perdidas: $" << (ganadas-perdidas);
+					setXY(2, 18); cout << "Buscar total por vendedor: ";
+					cin.ignore(); getline(cin, vendedorBuscar);
+					float totalV = filtrarPorVendedor(oportunidadList, vendedorBuscar);
+					setXY(2, 19); cout << "Total vendido por " << vendedorBuscar << ": $" << totalV;
 
-					setXY(2, 20); cout << "Presione cualquier tecla para regresar..."; system("pause>0");
+					setXY(2, 21); cout << "Presione cualquier tecla..."; system("pause>0");
+
 				} break;
 
 				case 4: break;
