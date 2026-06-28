@@ -659,6 +659,7 @@ public:
 					else {
 						int posY = 11;
 						for (auto it = vipsActivos.begin(); it != vipsActivos.end(); ++it) {
+							Contact<string> c = *it;
 							setXY(2, posY++); cout << "- " << contactoATexto(c);
 							setXY(2,13); cout <<	" ,Empresa: " << (*it).getEmpresa() << " ,Cargo: " << (*it).getCargo();
 						}
