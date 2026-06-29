@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClInclude Include="Contact.h" />
     <ClInclude Include="ContactList.h" />
+    <ClInclude Include="Dataset.h" />
     <ClInclude Include="FileManager.h" />
     <ClInclude Include="HashTable.h" />
     <ClInclude Include="header.h" />
