@@ -227,7 +227,8 @@ public:
 		string fechaF = std::to_string(diaF) + "/" + std::to_string(mesF) + "/26";
 
 		int indiceContacto = rand() % listaContactos->length();
-		Contact<string>* contacto = listaContactos->GetContacto(to_string(indiceContacto));
+		Contact<string>* contacto = listaContactos->GetContactoPorIndice(indiceContacto); 
+		if (contacto == nullptr) return;
 		string idContacto = contacto->getId();
 
 		Opportunity<string> o(titulo, valor, avance, fechaI, fechaF, vendedor, idContacto);

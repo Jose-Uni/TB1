@@ -1,27 +1,180 @@
-Piho1/6/
-Pizza
-20
-2
-1/5/2026
-6/5/2026
-hola
-MaMaReMa
----
-bealhoma
-bembos
-35
-0
-hoy
-ma;ana
-alguien
-MaMaReMa
----
-noohoma
-nose
-300
+LiLi1220
+Licencia anual
+32352
 1
-hoy
-manana
-o
-rudoruce
+12/7/26
+20/9/26
+Liria Lozano
+AnSaCoJe
+---
+ImFa1/16
+Implementacion de sistema
+18493
+2
+1/11/26
+16/1/26
+Fatima Coello
+SoGoCoSu
+---
+SeFa2110
+Servicio de soporte
+31941
+2
+21/9/26
+10/7/26
+Fatima Coello
+SoGoCoSu
+---
+MaRo177/
+Mantenimiento preventivo
+9526
+3
+17/10/26
+7/11/26
+Rosa Quispe
+AnRaTeJe
+---
+CoRo1716
+Consultoria estrategica
+4943
+0
+17/4/26
+16/9/26
+Rosa Quispe
+AnRaTeJe
+---
+CaJo2222
+Capacitacion corporativa
+30747
+3
+22/8/26
+22/11/26
+Jose Pacifico
+DiSiAlDi
+---
+PrRo2826
+Proyecto piloto
+4573
+3
+28/2/26
+26/3/26
+Rosa Quispe
+DiRoVeJe
+---
+ImRo1123
+Implementacion de sistema
+9987
+1
+11/5/26
+23/5/26
+Rosa Quispe
+CaSaPaGe
+---
+PrPa1917
+Proyecto piloto
+16746
+0
+19/4/26
+17/6/26
+Patricia Leon
+CaRaTeJe
+---
+CoRo177/
+Consultoria estrategica
+4441
+0
+17/2/26
+7/2/26
+Rosa Quispe
+AnRaTeJe
+---
+CaRo264/
+Capacitacion corporativa
+21573
+0
+26/4/26
+4/3/26
+Rosa Quispe
+SoGoCoSu
+---
+LiJo2118
+Licencia anual
+27350
+3
+21/1/26
+18/6/26
+Jose Pacifico
+AnRaTeJe
+---
+ImLi2626
+Implementacion de sistema
+4307
+2
+26/8/26
+26/4/26
+Liria Lozano
+DaRoNoCo
+---
+RePa1724
+Renovacion de contrato
+7270
+3
+17/12/26
+24/3/26
+Patricia Leon
+AnRaTeJe
+---
+SeJo1919
+Servicio de soporte
+24017
+3
+19/7/26
+19/2/26
+Jose Pacifico
+GaAgAlJe
+---
+InJo1315
+Integracion de plataforma
+27436
+2
+13/7/26
+15/6/26
+Jose Pacifico
+GaVaGlAs
+---
+CoRo3/22
+Consultoria estrategica
+28741
+2
+3/4/26
+22/6/26
+Rosa Quispe
+CaPeVeAn
+---
+LiLi1419
+Licencia anual
+16960
+3
+14/1/26
+19/10/26
+Liria Lozano
+GaVaGlAs
+---
+SeRo7/23
+Servicio de soporte
+20075
+0
+7/6/26
+23/12/26
+Rosa Quispe
+AnMeSuGe
+---
+AmPa2213
+Ampliacion de plan
+18913
+1
+22/12/26
+13/2/26
+Patricia Leon
+MaCaSuEj
 ---

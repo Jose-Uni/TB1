@@ -1,45 +1,180 @@
-MaMaReMa
-Marta
-Martense
-MartitasUnidas.com
-676767
-ReunionDeMARTITAS
-MartaMayor
-4
+CaSaPaGe
+Camila
+Sanchez
+camila.sanchez@mail.com
+900007078
+Pacifico Ventures
+Gerente General
+3
 ---
-Ve77mano
-Vegeta
-777
-Vegeta777.com
-77777
-maincra
-nose
+AnMeSuGe
+Andres
+Medina
+andres.medina@mail.com
+900011619
+Sumaq Corp
+Gerente de Compras
+5
+---
+AnSaCoJe
+Andres
+Sanchez
+andres.sanchez@mail.com
+900005166
+Continental Trade
+Jefe de Recursos Humanos
 1
 ---
-crmechli
-cristian
-medina
-chatito17@upc.edu.pe
-12345
-chatitoscorp
-lider
-4
+VaPeDeAs
+Valentina
+Perez
+valentina.perez@mail.com
+900000333
+Delta Innovaciones
+Asistente Administrativo
+1
 ---
-hononoqs
-hola
-nose
-matate@gmail.com
-123456
-nosecorp
-qsy
+DiRoVeJe
+Diego
+Romero
+diego.romero@mail.com
+900015698
+Vertice Logistica
+Jefe de Atencion al Cliente
+1
+---
+VaGoCuEs
+Valentina
+Gonzalez
+valentina.gonzalez@mail.com
+900006126
+Cumbre Industrial
+Especialista en Marketing
+3
+---
+GaAgAlJe
+Gabriela
+Aguilar
+gabriela.aguilar@mail.com
+900019203
+Altura Consulting
+Jefe de Atencion al Cliente
+6
+---
+MaCaSuEj
+Maria
+Castro
+maria.castro@mail.com
+900018902
+Sumaq Corp
+Ejecutivo de Ventas
+1
+---
+FeRoAlJe
+Fernando
+Rodriguez
+fernando.rodriguez@mail.com
+900023395
+Altura Consulting
+Jefe de Recursos Humanos
+6
+---
+VaCaTeCo
+Valentina
+Castro
+valentina.castro@mail.com
+900002892
+TechNova
+Coordinador de Proyectos
+2
+---
+PaFlDeAn
+Paula
+Flores
+paula.flores@mail.com
+900032475
+Delta Innovaciones
+Analista Comercial
 0
 ---
-rudoruce
-rubius
-doblas
-rubius@gmail.com
-676767
-rubiuscorp
-ceo
+AnRaTeJe
+Andres
+Ramirez
+andres.ramirez@mail.com
+900009222
+TechNova
+Jefe de Operaciones
+5
+---
+GaVaGlAs
+Gabriela
+Vargas
+gabriela.vargas@mail.com
+900003709
+Globalink
+Asistente Administrativo
 1
+---
+SoGoCoSu
+Sofia
+Gonzalez
+sofia.gonzalez@mail.com
+900015143
+Continental Trade
+Supervisor de Logistica
+3
+---
+CaHeHoAn
+Camila
+Herrera
+camila.herrera@mail.com
+900027803
+Horizonte Digital
+Analista de Sistemas
+5
+---
+DiSiAlDi
+Diego
+Silva
+diego.silva@mail.com
+900029561
+Altura Consulting
+Director Comercial
+5
+---
+DaRoNoCo
+Daniela
+Rojas
+daniela.rojas@mail.com
+900002984
+NovaLink Peru
+Consultor Senior
+2
+---
+CaPeVeAn
+Carlos
+Perez
+carlos.perez@mail.com
+900005099
+Vertice Logistica
+Analista Comercial
+5
+---
+CaRaTeJe
+Camila
+Ramirez
+camila.ramirez@mail.com
+900022349
+TechNova
+Jefe de Recursos Humanos
+1
+---
+RiGaAnSu
+Ricardo
+Garcia
+ricardo.garcia@mail.com
+900030796
+Andina Soluciones
+Supervisor de Logistica
+0
 ---

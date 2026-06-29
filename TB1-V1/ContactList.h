@@ -184,6 +184,12 @@ public:
 		return aux->contacto;
 	}
 
+	Contact<T>* GetContactoPorIndice(int pos) {
+		Nodo* aux = Indice(pos);
+		if (aux == nullptr) return nullptr;
+		return aux->contacto;
+	}
+
 	string nombreAid(string n) {
 
 		string q = ToLower(n);
