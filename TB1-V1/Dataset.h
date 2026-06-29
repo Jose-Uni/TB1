@@ -1,24 +1,24 @@
 #include "header.h"
 
 string nombres[20] = {
-    "Juan", "Maria", "Carlos", "Ana", "Luis",
+    "Juan", "Gladys", "Carlos", "Ana", "Luis",
     "Sofia", "Diego", "Valentina", "Andres", "Camila",
-    "Jorge", "Lucia", "Miguel", "Paula", "Ricardo",
-    "Daniela", "Fernando", "Gabriela", "Sebastian", "Rubius"
+    "Jorge", "Lucia", "Nachito", "Paula", "Ricardo",
+    "Daniela", "Nicolas", "Gabriela", "Sebastian", "Rubius"
 };
 
 string apellidos[20] = {
     "Garcia", "Rodriguez", "Martinez", "Lopez", "Gonzalez",
     "Perez", "Sanchez", "Ramirez", "Torres", "Flores",
     "Diaz", "Vargas", "Castro", "Romero", "Mendoza",
-    "Silva", "Rojas", "Herrera", "Medina", "Aguilar"
+    "Silva", "De las Casas", "Herrera", "Medina", "Aguilar"
 };
 
 string empresas[20] = {
     "TechNova", "Globalink", "InverPeru", "Sumaq Corp", "Andina Soluciones",
     "Quimera SAC", "Nexus Group", "Cumbre Industrial", "Vertice Logistica", "Horizonte Digital",
     "Pacifico Ventures", "Altura Consulting", "Raices Comercial", "Delta Innovaciones", "BrightPath",
-    "Mercurio Tech", "Estrella del Sur", "Continental Trade", "Zenith Partners", "NovaLink Peru"
+    "Mercurio Tech", "Estrella del Sur", "Continental Trade", "Zenith Partners", "Constructora De las Casas"
 };
 
 string cargos[20] = {
